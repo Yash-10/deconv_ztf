@@ -19,7 +19,7 @@ from astropy.convolution import interpolate_replace_nans
 import matplotlib.pyplot as plt
 
 from utils import (
-    source_info, scale_psf, artificial_sky_background, create_subdivisions, reconstruct_full_image_from_patches,
+    source_info, scale_psf, add_artificial_sky_background, create_subdivisions, reconstruct_full_image_from_patches,
     reconstruct_full_image_from_patches_original, run_crossmatching
 )
 from constants import CAT_COLUMNS
@@ -250,7 +250,7 @@ if __name__ == "__main__":
                 )
 
             if opt.add_bkg_to_deconvolved:
-                deconvolved += artificial_sky_background(deconvolved, orig_bkg)
+                deconvolved = add_artificial_sky_background(deconvolved, orig_bkg)
 
             deconvolved = deconvolved.byteswap().newbyteorder()
             if opt.use_sextractor:
@@ -412,8 +412,7 @@ if __name__ == "__main__":
         print(f'Execution time: {exec_times[-1]:.2f} seconds.')
 
     if opt.add_bkg_to_deconvolved and not opt.use_subdiv and opt.reconstruct_full_image_from_subdivisions:  # When subdivision approach is used, background is already added during each subdivision deconvolution.
-        # deconvolved += artificial_sky_background(deconvolved, min(deconvolved[deconvolved > 0])*5, gain=gain)
-        deconvolved += artificial_sky_background(deconvolved, orig_bkg)
+        deconvolved = add_artificial_sky_background(deconvolved, orig_bkg)
 
     ## The below two lines are only very needed for very particular cases. But here we keep it general for all cases.
     # import sep

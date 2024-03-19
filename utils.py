@@ -349,10 +349,8 @@ def reconstruct_full_image_from_patches_original(output_projection_header, strin
     )
     return arr, footprint
 
-def artificial_sky_background(image, bkg_map):
-    """
-    Generate sky background, optionally including a gradient across the image (because
-    some times Moons happen).
+def add_artificial_sky_background(image, bkg_map):
+    """Add sky background to the provided image.
 
     Parameters
     ----------
@@ -364,19 +362,6 @@ def artificial_sky_background(image, bkg_map):
 
     """
     return image + bkg_map
-    # # Set up the random number generator, allowing a seed to be set from the environment
-    # seed = os.getenv('GUIDE_RANDOM_SEED', None)
-
-    # if seed is not None:
-    #     seed = int(seed)
-
-    # # This is the generator to use for any image component which changes in each image, e.g. read noise
-    # # or Poisson error
-    # noise_rng = np.random.default_rng(seed)
-
-    # sky_im = noise_rng.poisson(sky_counts * gain, size=image.shape) / gain
-
-    # return sky_im
 
 def run_crossmatching(basename):
     subprocess.run(
