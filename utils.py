@@ -158,7 +158,7 @@ def source_info(
         # the image has no source (is blank, for example) or if the subdivision size used
         # is very small (if using teh subdivision approach) such that no source is present in that subdivision.
         try:
-            cat = pd.read_csv(catalog_name, skiprows=len(CAT_COLUMNS), header=None, delim_whitespace=True)
+            cat = pd.read_csv(catalog_name, skiprows=len(CAT_COLUMNS), header=None, sep='\s+')#delim_whitespace=True)
         except EmptyDataError:
             cat = None
             os.chdir('../')
