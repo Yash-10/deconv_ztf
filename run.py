@@ -220,6 +220,7 @@ if __name__ == "__main__":
 
             # Indicator to inform which subdivision were these objects from.
             objects['SUBDIV_NUMBER'] = [i] * len(objects)
+            objects['SUBDIV_NUMBER'] = objects['SUBDIV_NUMBER'].astype(int)
 
             if len(objects) == 1 and objects['NUMBER'].iloc[0] == -99:
                 # No source is detected, so `objects` is dummy. So don't add it in detected catalog.
@@ -311,6 +312,7 @@ if __name__ == "__main__":
 
             # Indicator to inform which subdivision were these objects from.
             deconv_objects_subdiv['SUBDIV_NUMBER'] = [i] * len(deconv_objects_subdiv)
+            deconv_objects_subdiv['SUBDIV_NUMBER'] = deconv_objects_subdiv['SUBDIV_NUMBER'].astype(int)
 
             if len(deconv_objects_subdiv) == 1 and deconv_objects_subdiv['NUMBER'].iloc[0] == -99:
                 # No source is detected, so `deconv_objects_subdiv` is dummy. So don't add it in detected catalog.
