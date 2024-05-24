@@ -479,10 +479,11 @@ if __name__ == "__main__":
         _orig_source_cat['ID_PARENT'] = [set_id(_orig_source_cat.loc[idx, 'ID_PARENT'], _orig_source_cat.loc[idx, 'SUBDIV_NUMBER']) for idx in range(len(_orig_source_cat))]
         _deconv_source_cat['NUMBER'] = [set_id(_deconv_source_cat.loc[idx, 'NUMBER'], _deconv_source_cat.loc[idx, 'SUBDIV_NUMBER']) for idx in range(len(_deconv_source_cat))]
         _deconv_source_cat['ID_PARENT'] = [set_id(_deconv_source_cat.loc[idx, 'ID_PARENT'], _deconv_source_cat.loc[idx, 'SUBDIV_NUMBER']) for idx in range(len(_deconv_source_cat))]
-        # TODO: Verify that NUMBER and ID_PARENT are the same unless the object is part of a deblend.
 
         # Remove redundant rows, i.e. rows with the same (x, y) location of the source.
-        _orig_source_cat.drop_duplicates(subset=['X_IMAGE_DBL', 'Y_IMAGE_DBL'], inplace=True, keep='first')  # Only the first occurence is retained.
+        # Note that we are using the X and Y coordinates instead of ID_PARENT/NUMBER because the aim of removing these duplicates is that since we have subdivision overlap, coinciding sources
+        # from adjacent subdivisions will be detected twice. We can only use coordinates to remove them since because they are in different subdivisions, ID_PARENT/NUMBER will never be the same, so it cannot be used for removal.
+        _orig_source_cat.drop_duplicates(subset=['X_IMAGE_DBL', 'Y_IMAGE_DBL'], inplace=True, keep='first')  # Only the first occurrence is retained.
         _deconv_source_cat.drop_duplicates(subset=['X_IMAGE_DBL', 'Y_IMAGE_DBL'], inplace=True, keep='first')  # Only the first occurence is retained.
         _num_orig_sources_after = _orig_source_cat.shape[0]
         _num_deconv_sources_after = _deconv_source_cat.shape[0]
