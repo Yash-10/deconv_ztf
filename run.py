@@ -141,6 +141,11 @@ if __name__ == "__main__":
         image = interpolate_replace_nans(image, psf, convolve=convolve_fft)
 
     if opt.use_subdiv:
+        # NOTE: IMPORTANT: Even if subdiv_overlap != 0, the subdivisions will have overlap
+        # if the image size is not an integral multiple of the subdivision size (for both x and y axes).
+        # The reason for this is because of the specific way in the subdivisions are created. Our subdivision
+        # creation approach prioritizes the shape of the subdivision to match what the user mentions, so if
+        # a non-square region is remaining to be extracted, it will still be a square.
         subdivs = create_subdivisions(
             image, subdiv_shape=(opt.subdiv_size, opt.subdiv_size),
             overlap=opt.subdiv_overlap, wcs=wcs
