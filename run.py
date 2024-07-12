@@ -488,8 +488,16 @@ if __name__ == "__main__":
         # Remove redundant rows, i.e. rows with the same (x, y) location of the source.
         # Note that we are using the X and Y coordinates instead of ID_PARENT/NUMBER because the aim of removing these duplicates is that since we have subdivision overlap, coinciding sources
         # from adjacent subdivisions will be detected twice. We can only use coordinates to remove them since because they are in different subdivisions, ID_PARENT/NUMBER will never be the same, so it cannot be used for removal.
+        # 1. FIRST FILTERING (using sub-pixel-precision coordinates).
         _orig_source_cat.drop_duplicates(subset=['X_IMAGE_DBL', 'Y_IMAGE_DBL'], inplace=True, keep='first')  # Only the first occurrence is retained.
         _deconv_source_cat.drop_duplicates(subset=['X_IMAGE_DBL', 'Y_IMAGE_DBL'], inplace=True, keep='first')  # Only the first occurence is retained.
+        # 2. SECOND FILTERING (using integer coordinates).
+        # This second filtering is used because two sources from different subdivisions may correspond to the same actual source (even if subdiv_overlap=0)
+        # So, this condition will remove such duplicates. The first condition above removes exact duplicates, but this condition tries to remove near-duplicates.
+        # Note that we don't check the flux/mag of the sources before removing duplicates: ideally, we only want to remove those whose XPEAK and YPEAK match but also their magnitudes
+        # to increase the chances of knowing it's the same source. Doing that is more trustworthy, but what we do below may also be sufficient and okay.
+        _orig_source_cat.drop_duplicates(subset=['XPEAK_IMAGE', 'YPEAK_IMAGE'], inplace=True, keep='first')  # Only the first occurrence is retained.
+        _deconv_source_cat.drop_duplicates(subset=['XPEAK_IMAGE', 'YPEAK_IMAGE'], inplace=True, keep='first')  # Only the first occurence is retained.
         _num_orig_sources_after = _orig_source_cat.shape[0]
         _num_deconv_sources_after = _deconv_source_cat.shape[0]
 
