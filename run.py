@@ -47,7 +47,7 @@ if __name__ == "__main__":
     parser.add_argument('--stop_criterion', type=int, default=3, help='How to decide when to stop SGP iterations.')
     # parser.add_argument('--save_images', action='store_true', help='if specified, store images as FITS files.')
     parser.add_argument('--flip_image', action='store_true', help='if specified, horizontally flips the input image before passing it to SGP.')
-    parser.add_argument('--add_bkg_to_deconvolved', action='store_true', help='if specificed, adds an artificial background to the deconvolved image before detection with the aim to remove any spurious sources.')
+    # parser.add_argument('--add_bkg_to_deconvolved', action='store_true', help='if specificed, adds an artificial background to the deconvolved image before detection with the aim to remove any spurious sources.')
     parser.add_argument('--box_height', type=int, default=64, help='height of box for estimating background in the input image given by `data_path_sciimg`, only used if not specified --use_subdiv')
     parser.add_argument('--box_width', type=int, default=64, help='width of box for estimating background in the input image given by `data_path_sciimg`, only used if not specified --use_subdiv')
     parser.add_argument('--use_subdiv', action='store_true', help='If specified, creates subdivisions, deconvolves each of them, and then mosaics them to create a single final deconvolved image.')
@@ -255,8 +255,8 @@ if __name__ == "__main__":
                     save=False, errflag=False, obj=None, tol_convergence=opt.tol_convergence
                 )
 
-            if opt.add_bkg_to_deconvolved:
-                deconvolved = add_artificial_sky_background(deconvolved, orig_bkg)
+            # if opt.add_bkg_to_deconvolved:
+            #     deconvolved_bkg_added = add_artificial_sky_background(deconvolved, orig_bkg)
 
             deconvolved = deconvolved.byteswap().newbyteorder()
             if opt.use_sextractor:
@@ -418,8 +418,8 @@ if __name__ == "__main__":
             )
         print(f'Execution time: {exec_times[-1]:.2f} seconds.')
 
-    if opt.add_bkg_to_deconvolved and not opt.use_subdiv and opt.reconstruct_full_image_from_subdivisions:  # When subdivision approach is used, background is already added during each subdivision deconvolution.
-        deconvolved = add_artificial_sky_background(deconvolved, orig_bkg)
+    # if opt.add_bkg_to_deconvolved and not opt.use_subdiv and opt.reconstruct_full_image_from_subdivisions:  # When subdivision approach is used, background is already added during each subdivision deconvolution.
+    #     deconvolved = add_artificial_sky_background(deconvolved, orig_bkg)
 
     ## The below two lines are only very needed for very particular cases. But here we keep it general for all cases.
     # import sep

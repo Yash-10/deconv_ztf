@@ -1,5 +1,5 @@
 import os
-import sys
+import copy
 import subprocess
 import numpy as np
 import pandas as pd
@@ -142,12 +142,31 @@ def source_info(
 
         catalog_name = f'{prefix}_251.fits_scat_sextractor.csv'
 
+        if not original:
+            if sextractor_parameters is not None:
+                sextractor_parameters_copy = copy.deepcopy(sextractor_parameters)
+                sextractor_parameters_copy.update({
+                    'BACK_TYPE': 'MANUAL',
+                    'BACK_VALUE': 0
+                })
+
         if sextractor_parameters is None:
             command = ['source-extractor', image_name, '-c', defaultFile, '-CATALOG_NAME', catalog_name, '-CHECKIMAGE_NAME', f'{prefix}_251.fits_scat_sextractor_bkg.fits,{prefix}_251.fits_scat_sextractor_bkgrms.fits']
             print(command)
             subprocess.run(command)
         else:
-            command = ['source-extractor', image_name, '-c', defaultFile, '-CATALOG_NAME', catalog_name, '-CHECKIMAGE_NAME', f'{prefix}_251.fits_scat_sextractor_bkg.fits,{prefix}_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', f'{sextractor_parameters["MAG_ZEROPOINT"]}', '-SEEING_FWHM', f'{sextractor_parameters["SEEING_FWHM"]}', '-GAIN', f'{sextractor_parameters["GAIN"]}', '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}']
+            command = [
+                'source-extractor', image_name, '-c', defaultFile, '-CATALOG_NAME', catalog_name,
+                '-CHECKIMAGE_NAME', f'{prefix}_251.fits_scat_sextractor_bkg.fits,{prefix}_251.fits_scat_sextractor_bkgrms.fits',
+                '-MAG_ZEROPOINT', f'{sextractor_parameters["MAG_ZEROPOINT"]}',
+                '-SEEING_FWHM', f'{sextractor_parameters["SEEING_FWHM"]}', '-GAIN', f'{sextractor_parameters["GAIN"]}',
+                '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}'
+            ]
+            if not original:
+                command += [
+                    '-BACK_TYPE', f'{sextractor_parameters_copy["BACK_TYPE"]}',
+                    '-BACK_VALUE', f'{sextractor_parameters_copy["BACK_VALUE"]}'
+                ]
             print(command)
             subprocess.run(command)
 
