@@ -484,3 +484,18 @@ def remove_very_close_coords(cat, threshold=1., leaf_size=40):
     filtered_cat = cat[mask]
 
     return filtered_cat
+
+
+import math
+def find_closest_factors(N):
+    # Start with the integer part of the square root of N
+    A = int(math.isqrt(N))
+    
+    # Decrease A until we find a divisor
+    while N % A != 0:
+        A -= 1
+    
+    # Calculate B
+    B = N // A
+    
+    return A, B

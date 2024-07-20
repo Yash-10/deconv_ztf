@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 
 from utils import (
     source_info, scale_psf, add_artificial_sky_background, create_subdivisions, reconstruct_full_image_from_patches,
-    run_crossmatching, remove_very_close_coords
+    run_crossmatching, remove_very_close_coords, find_closest_factors
 )
 from constants import CAT_COLUMNS
 
@@ -391,11 +391,15 @@ if __name__ == "__main__":
             t_recon = timer() - t0_recon
             print(f'Execution time [all subdivisions] + mosaicking: {np.sum(execution_times) + t_recon} seconds.')
         elif opt.reconstruct_subdivisions_fast:
+            assert np.all(
+                np.array(
+                    [d.shape for d in deconvolved_subdivs]
+                ) == (opt.subdiv_size, opt.subdiv_size)
+            )
+
+            shapex, shapey = find_closest_factors(len(deconvolved_subdivs))
             deconvolved_rearranged = np.reshape(
-                deconvolved_subdivs, (
-                    np.sum([d.shape[0] for d in deconvolved_subdivs]),
-                    np.sum([d.shape[1] for d in deconvolved_subdivs])
-                )
+                deconvolved_subdivs, (shapey, shapex)
             )
 
         print(f'Execution time [all subdivisions]: {np.sum(execution_times)} seconds.')
