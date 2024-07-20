@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 
 from utils import (
     source_info, scale_psf, add_artificial_sky_background, create_subdivisions, reconstruct_full_image_from_patches,
-    run_crossmatching, remove_very_close_coords, find_closest_factors
+    run_crossmatching, remove_very_close_coords, arrange_2d_arrays
 )
 from constants import CAT_COLUMNS
 
@@ -397,10 +397,11 @@ if __name__ == "__main__":
                 ) == (opt.subdiv_size, opt.subdiv_size)
             )
 
-            shapex, shapey = find_closest_factors(len(deconvolved_subdivs)*opt.subdiv_size*opt.subdiv_size)
-            deconvolved_rearranged = np.reshape(
-                deconvolved_subdivs, (shapey, shapex)
-            )
+            # shapex, shapey = find_closest_factors(len(deconvolved_subdivs)*opt.subdiv_size*opt.subdiv_size)
+            # deconvolved_rearranged = np.reshape(
+            #     deconvolved_subdivs, (shapey, shapex)
+            # )
+            deconvolved_rearranged = arrange_2d_arrays(deconvolved_subdivs)
 
         print(f'Execution time [all subdivisions]: {np.sum(execution_times)} seconds.')
 
