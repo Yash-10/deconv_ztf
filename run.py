@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 
 from utils import (
     source_info, scale_psf, add_artificial_sky_background, create_subdivisions, reconstruct_full_image_from_patches,
-    reconstruct_full_image_from_patches_original, run_crossmatching
+    reconstruct_full_image_from_patches_original, run_crossmatching, remove_very_close_coords
 )
 from constants import CAT_COLUMNS
 
@@ -467,7 +467,6 @@ if __name__ == "__main__":
         for img in glob.glob(os.path.join(dirname, 'subdiv*.csv')):
             os.remove(img)
 
-        ############################ COMMENTING BELOW LINES ##############################
         # If there is some overlap or if the entire image size is not an integral multiple of the subdivision size, same sources can be detected across two adjacent subdivisions. Here, we remove duplicate rows.
         # Note that, in the current implementation, each subdivision will be a square irrespective of whether the image size is an integral multiple of the subdivision size or not.
         # This means that in such a case, the subdivisions will have an overlap even if subdiv_overlap=0.
@@ -500,6 +499,11 @@ if __name__ == "__main__":
         _deconv_source_cat.drop_duplicates(subset=['XPEAK_IMAGE', 'YPEAK_IMAGE'], inplace=True, keep='first')  # Only the first occurence is retained.
         _num_orig_sources_after = _orig_source_cat.shape[0]
         _num_deconv_sources_after = _deconv_source_cat.shape[0]
+
+        # 3. THIRD FILTERING. (This filtering is the most strongest and can be replaced with the previous two conditions,
+        # but just using this as a third condition for transparency).
+        _orig_source_cat = remove_very_close_coords(_orig_source_cat, threshold=0.9)
+        _deconv_source_cat = remove_very_close_coords(_deconv_source_cat, threshold=0.9)
 
         print(f'[Original]: {_num_orig_sources_after} sources out of {_num_orig_sources} remaining after removing duplicates')
         print(f'[Deconvolved]: {_num_deconv_sources_after} sources out of {_num_deconv_sources} remaining after removing duplicates')

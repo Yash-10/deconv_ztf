@@ -23,6 +23,8 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 from astropy.nddata import Cutout2D
 
+from sklearn.neighbors import BallTree
+
 # from astropy.stats import sigma_clipped_stats, SigmaClip
 # from photutils.segmentation import detect_threshold
 
@@ -452,5 +454,26 @@ def run_crossmatching(basename):
             'join=2not1', 'params=1.383', 'find=best2', 'progress=time'
         ]
     )
-    
-    
+
+
+def remove_very_close_coords(cat, threshold=1., leaf_size=40):
+    # About the threshold distance: any duplicate coordinate < `threshold` pixels will be removed.
+
+    coords = cat[['X_IMAGE_DBL', 'Y_IMAGE_DBL']].values
+    tree = BallTree(coords, leaf_size=leaf_size)  # default leaf_size=40.
+
+    # Query all points to find neighbors within the threshold
+    indices = tree.query_radius(coords, r=threshold)
+
+    # Create a mask to keep track of rows to keep
+    mask = np.ones(len(cat), dtype=bool)
+
+    for idx, neighbors in enumerate(indices):
+        if mask[idx]:
+            # Mark all neighbors as False except the current point
+            mask[neighbors[neighbors != idx]] = False
+
+    # Filter the dataframe
+    filtered_cat = cat[mask]
+
+    return filtered_cat
