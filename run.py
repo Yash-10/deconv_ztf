@@ -61,7 +61,9 @@ if __name__ == "__main__":
     parser.add_argument('--tol_convergence', type=float, default=1e-4, help='The tolerance level to use for terminating the SGP iterations.')
     parser.add_argument('--gain', type=float, default=None, help='CCD gain')
     parser.add_argument('--saturate', type=float, default=None, help='CCD saturating pixel value.')
+    # Note: if both reconstruct_full_image_from_subdivisions and reconstruct_subdivisions_fast are provided, reconstruct_full_image_from_subdivisions will take precedence. 
     parser.add_argument('--reconstruct_full_image_from_subdivisions', action='store_true', help='If specified, will reconstruct the entire image from subdivisions. This step is a big bottleneck, so use it only when the entire image is required. This does not affect any source properties: everything else is intact.')
+    parser.add_argument('--reconstruct_subdivisions_fast', action='store_true', help='If specified, the code will simply rearrange all the subdivisions (if using opt.use_subdiv) into a final image which may not match the dimensions of the original image, but is useful if having artificats at the subdivision overlaps is undesired for visualization. Like `reconstruct_full_image_from_subdivisions`, no source property is affected.')
     parser.add_argument('--interpolate_bad_pixels', action='store_true', help='If specified, will mask non-finite pixel values (NaN/Inf) or saturated pixels and replace them by interpolating from nearby values.')
     parser.add_argument('--pixel_mask', type=str, default='', help='Data path containing a pixel mask. A FITS file. > 0 corresponds to bad pixels and 0 corresponds to good pixels.')
     parser.add_argument('--perform_catalog_crossmatching', action='store_true', help='If specified, will crossmatch detected sources from the original image and the deconvolved image.')
@@ -150,6 +152,8 @@ if __name__ == "__main__":
             image, subdiv_shape=(opt.subdiv_size, opt.subdiv_size),
             overlap=opt.subdiv_overlap, wcs=wcs
         )
+
+        deconvolved_subdivs = []
 
         orig_fluxes = []
         deconv_fluxes = []
@@ -254,6 +258,8 @@ if __name__ == "__main__":
                     stop_criterion=opt.stop_criterion, flux=np.sum(orig_fluxes_subdiv), scale_data=True,  # flux=np.sum(orig_fluxes_subdiv)
                     save=False, errflag=False, obj=None, tol_convergence=opt.tol_convergence
                 )
+
+            deconvolved_subdivs.append(deconvolved)
 
             # if opt.add_bkg_to_deconvolved:
             #     deconvolved_bkg_added = add_artificial_sky_background(deconvolved, orig_bkg)
@@ -384,6 +390,13 @@ if __name__ == "__main__":
 
             t_recon = timer() - t0_recon
             print(f'Execution time [all subdivisions] + mosaicking: {np.sum(execution_times) + t_recon} seconds.')
+        elif opt.reconstruct_subdivisions_fast:
+            deconvolved_rearranged = np.reshape(
+                deconvolved_subdivs, (
+                    np.sum([d.shape[0] for d in deconvolved_subdivs]),
+                    np.sum([d.shape[1] for d in deconvolved_subdivs])
+                )
+            )
 
         print(f'Execution time [all subdivisions]: {np.sum(execution_times)} seconds.')
 
@@ -553,6 +566,8 @@ if __name__ == "__main__":
             # the ones estimated using the entire image, but rather it's a mosaic of bkg and RMS estimated from each subdivision.
             fits.writeto(os.path.join(dirname, f'orig_bkg_{basename}'), orig_bkg, overwrite=True)
             fits.writeto(os.path.join(dirname, f'orig_bkgrms_{basename}'), orig_bkg_rms, overwrite=True)
+        elif opt.reconstruct_subdivisions_fast:
+            fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_rearranged_{basename}'), deconvolved_rearranged, overwrite=True)
 
         # Note: If we use the subdivision approach, then the below type of background files are not needed anymore.
         for img in glob.glob('*.fits_scat_sextractor_bkg.fits'):
@@ -584,7 +599,7 @@ if __name__ == "__main__":
         with open(exec_times_file, "a") as f:
             f.write(f'{opt.data_path_sciimg},{exec_times[-1]},{image.shape[1]},{image.shape[0]},{len(orig_objects)}\n')
 
-    if opt.reconstruct_full_image_from_subdivisions:
+    if opt.reconstruct_full_image_from_subdivisions or opt.reconstruct_subdivisions_fast:
         from mpl_toolkits.axes_grid1 import make_axes_locatable
         from astropy.visualization import ImageNormalize, LogStretch, ZScaleInterval
 
@@ -596,7 +611,7 @@ if __name__ == "__main__":
         fig.colorbar(im0, cax=cax, orientation='vertical')
         ax[0].set_title('(a) Original image (from ZTF)', fontsize=12)
 
-        im2 = ax[1].imshow(deconvolved, origin='lower', norm=norm)
+        im2 = ax[1].imshow(deconvolved if opt.reconstruct_full_image_from_subdivisions else deconvolved_rearranged, origin='lower', norm=norm)
         divider = make_axes_locatable(ax[1])
         cax = divider.append_axes('right', size='5%', pad=0.05)
         fig.colorbar(im2, cax=cax, orientation='vertical')
