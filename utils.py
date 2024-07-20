@@ -149,7 +149,7 @@ def source_info(
                 sextractor_parameters_copy = copy.deepcopy(sextractor_parameters)
                 sextractor_parameters_copy.update({
                     'BACK_TYPE': 'MANUAL',
-                    'BACK_VALUE': 0
+                    'BACK_VALUE': 0  # because deconvolution is estimating f from Af+bkg, so ideally there must not be any background.
                 })
 
         if sextractor_parameters is None:
