@@ -251,7 +251,7 @@ if __name__ == "__main__":
             else:
                 deconvolved, iterations, _, exec_times, errs = sgp(
                     subdiv.data, psf, orig_bkg, init_recon=opt.init_recon, proj_type=proj_type,
-                    stop_criterion=opt.stop_criterion, flux=None, scale_data=True,  # flux=np.sum(orig_fluxes_subdiv)
+                    stop_criterion=opt.stop_criterion, flux=np.sum(orig_fluxes_subdiv), scale_data=True,  # flux=np.sum(orig_fluxes_subdiv)
                     save=False, errflag=False, obj=None, tol_convergence=opt.tol_convergence
                 )
 
@@ -413,7 +413,7 @@ if __name__ == "__main__":
         else:
             deconvolved, iterations, _, exec_times, errs = sgp(
                 image, psf, orig_bkg, init_recon=opt.init_recon, proj_type=proj_type,
-                stop_criterion=opt.stop_criterion, flux=None, scale_data=True,
+                stop_criterion=opt.stop_criterion, flux=np.sum(orig_fluxes), scale_data=True,
                 save=False, errflag=False, obj=None, tol_convergence=opt.tol_convergence
             )
         print(f'Execution time: {exec_times[-1]:.2f} seconds.')
