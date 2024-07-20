@@ -397,7 +397,7 @@ if __name__ == "__main__":
                 ) == (opt.subdiv_size, opt.subdiv_size)
             )
 
-            shapex, shapey = find_closest_factors(len(deconvolved_subdivs)*opt.subdiv_size)
+            shapex, shapey = find_closest_factors(len(deconvolved_subdivs)*opt.subdiv_size*opt.subdiv_size)
             deconvolved_rearranged = np.reshape(
                 deconvolved_subdivs, (shapey, shapex)
             )
