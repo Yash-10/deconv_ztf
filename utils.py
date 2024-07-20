@@ -149,7 +149,8 @@ def source_info(
                 sextractor_parameters_copy = copy.deepcopy(sextractor_parameters)
                 sextractor_parameters_copy.update({
                     'BACK_TYPE': 'MANUAL',
-                    'BACK_VALUE': 0  # because deconvolution is estimating f from Af+bkg, so ideally there must not be any background.
+                    'BACK_VALUE': 0,  # because deconvolution is estimating f from Af+bkg, so ideally there must not be any background.
+                    'DETECT_MINAREA': 1  # because deconvolved images have no background, so even 1-pixel detection may be non-spurious.
                 })
 
         if sextractor_parameters is None:
@@ -167,7 +168,8 @@ def source_info(
             if not original:
                 command += [
                     '-BACK_TYPE', f'{sextractor_parameters_copy["BACK_TYPE"]}',
-                    '-BACK_VALUE', f'{sextractor_parameters_copy["BACK_VALUE"]}'
+                    '-BACK_VALUE', f'{sextractor_parameters_copy["BACK_VALUE"]}',
+                    '-DETECT_MINAREA', f'{sextractor_parameters_copy["DETECT_MINAREA"]}'
                 ]
             print(command)
             subprocess.run(command)
