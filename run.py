@@ -502,8 +502,8 @@ if __name__ == "__main__":
 
         # 3. THIRD FILTERING. (This filtering is the most strongest and can be replaced with the previous two conditions,
         # but just using this as a third condition for transparency).
-        _orig_source_cat = remove_very_close_coords(_orig_source_cat, threshold=0.9)
-        _deconv_source_cat = remove_very_close_coords(_deconv_source_cat, threshold=0.9)
+        _orig_source_cat = remove_very_close_coords(_orig_source_cat, threshold=1.0)
+        _deconv_source_cat = remove_very_close_coords(_deconv_source_cat, threshold=1.0)
 
         print(f'[Original]: {_num_orig_sources_after} sources out of {_num_orig_sources} remaining after removing duplicates')
         print(f'[Deconvolved]: {_num_deconv_sources_after} sources out of {_num_deconv_sources} remaining after removing duplicates')
