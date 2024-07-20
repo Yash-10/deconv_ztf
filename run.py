@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 
 from utils import (
     source_info, scale_psf, add_artificial_sky_background, create_subdivisions, reconstruct_full_image_from_patches,
-    reconstruct_full_image_from_patches_original, run_crossmatching, remove_very_close_coords
+    run_crossmatching, remove_very_close_coords
 )
 from constants import CAT_COLUMNS
 
@@ -369,12 +369,12 @@ if __name__ == "__main__":
             # It is recommended to not use `reconstruct_full_image_from_subdivisions` for small-sized subdivisions since reconstructing full
             # image from subdivisions is used for visualization only and does not affect source statistics and crossmatches.
             t0_recon = timer()
-            deconvolved, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="image")
-            deconvolved_bkg, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkg")
-            deconvolved_bkg_rms, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkgrms")
+            deconvolved, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="image", original=False)
+            deconvolved_bkg, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkg", original=False)
+            deconvolved_bkg_rms, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkgrms", original=False)
 
-            orig_bkg, _ = reconstruct_full_image_from_patches_original(hdul[0].header, string_key="bkg")
-            orig_bkg_rms, _ = reconstruct_full_image_from_patches_original(hdul[0].header, string_key="bkgrms")
+            orig_bkg, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkg", original=True)
+            orig_bkg_rms, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkgrms", original=True)
 
             assert deconvolved.shape == image.shape
             assert deconvolved_bkg.shape == image.shape
@@ -443,7 +443,6 @@ if __name__ == "__main__":
             fig.savefig(f'{dirname}/deconvolved_{opt.data_path_sciimg.split("/")[-1]}_positions.png', bbox_inches='tight')
         print(f'No. of objects (deconvolved): {len(deconv_objects)}')
         fits.writeto(os.path.join(dirname, f'deconv_bkg_{basename}'), deconvolved_bkg, overwrite=True)
-        # TODO: Make sure below line no err is raised.
         fits.writeto(os.path.join(dirname, f'deconv_bkgrms_{basename}'), deconvolved_bkg_rms, overwrite=True)
 
         fits.writeto(os.path.join(dirname, f'orig_bkg_{basename}'), orig_bkg, overwrite=True)

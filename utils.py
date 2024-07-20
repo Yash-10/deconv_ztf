@@ -356,19 +356,20 @@ def create_subdivisions(image, subdiv_shape=(100, 100), overlap=10, wcs=None):
     return subdivs
 
 
-def reconstruct_full_image_from_patches(output_projection_header, string_key='image', dirname='sgp_reconstruction_results'):  # string_key can be, for e.g., 'image', 'bkg', or 'bkgrms'.
+def reconstruct_full_image_from_patches(output_projection_header, string_key='image', dirname='sgp_reconstruction_results', original=True):  # string_key can be, for e.g., 'image', 'bkg', or 'bkgrms'.
+    prefix = 'orig' if original else 'deconvolved'
     arr, footprint = reproject_and_coadd(
-        [fits.open(f)[0] for f in sorted(glob.glob(f'{dirname}/temp_deconvolved_{string_key}*.fits'), key=lambda x: x[17:19])],
+        [fits.open(f)[0] for f in sorted(glob.glob(f'{dirname}/temp_{prefix}_{string_key}*.fits'), key=lambda x: x[17:19])],
         output_projection=output_projection_header, reproject_function=reproject_interp, match_background=False
     )
     return arr, footprint
 
-def reconstruct_full_image_from_patches_original(output_projection_header, string_key='image', dirname='sgp_reconstruction_results'):  # string_key can be, for e.g., 'image', 'bkg', or 'bkgrms'.
-    arr, footprint = reproject_and_coadd(
-        [fits.open(f)[0] for f in sorted(glob.glob(f'{dirname}/temp_orig_{string_key}*.fits'), key=lambda x: x[17:19])],
-        output_projection=output_projection_header, reproject_function=reproject_interp, match_background=False
-    )
-    return arr, footprint
+# def reconstruct_full_image_from_patches_original(output_projection_header, string_key='image', dirname='sgp_reconstruction_results'):  # string_key can be, for e.g., 'image', 'bkg', or 'bkgrms'.
+#     arr, footprint = reproject_and_coadd(
+#         [fits.open(f)[0] for f in sorted(glob.glob(f'{dirname}/temp_orig_{string_key}*.fits'), key=lambda x: x[17:19])],
+#         output_projection=output_projection_header, reproject_function=reproject_interp, match_background=False
+#     )
+#     return arr, footprint
 
 def add_artificial_sky_background(image, bkg_map):
     """Add sky background to the provided image.
