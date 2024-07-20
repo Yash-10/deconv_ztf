@@ -172,7 +172,7 @@ def source_info(
                     '-BACK_TYPE', f'{sextractor_parameters_copy["BACK_TYPE"]}',
                     '-BACK_VALUE', f'{sextractor_parameters_copy["BACK_VALUE"]}',
                     '-DETECT_MINAREA', f'{sextractor_parameters_copy["DETECT_MINAREA"]}',
-                    '-FILTER', f'{sextractor_parameters_copy["FILTER"]}'
+                    '-FILTER', f'{sextractor_parameters_copy["FILTER"]}',
                     '-CLEAN', f'{sextractor_parameters_copy["CLEAN"]}'
                 ]
             print(command)
