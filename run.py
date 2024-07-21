@@ -391,11 +391,12 @@ if __name__ == "__main__":
             t_recon = timer() - t0_recon
             print(f'Execution time [all subdivisions] + mosaicking: {np.sum(execution_times) + t_recon} seconds.')
         elif opt.reconstruct_subdivisions_fast:
+            assert len(deconvolved_subdivs) > 0
             assert np.all(
                 np.array(
                     [d.shape for d in deconvolved_subdivs]
                 ) == (opt.subdiv_size, opt.subdiv_size)
-            )
+            )  # This is because the way we create subdivisions ensures all subdivisions will be of the same size.
 
             # shapex, shapey = find_closest_factors(len(deconvolved_subdivs)*opt.subdiv_size*opt.subdiv_size)
             # deconvolved_rearranged = np.reshape(

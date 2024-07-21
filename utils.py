@@ -507,23 +507,24 @@ def arrange_2d_arrays(arrays):
     # Determine the number of arrays
     num_arrays = len(arrays)
 
-    # Calculate the size of the grid
-    grid_size = math.ceil(math.sqrt(num_arrays))
+    # Calculate the number of rows and columns for the grid
+    num_cols = math.ceil(math.sqrt(num_arrays))
+    num_rows = math.ceil(num_arrays / num_cols)
 
     # Determine the shape of individual arrays (assuming they all have the same shape)
     array_shape = arrays[0].shape
     rows_per_array, cols_per_array = array_shape
 
     # Calculate the shape of the big array
-    big_array_shape = (grid_size * rows_per_array, grid_size * cols_per_array)
+    big_array_shape = (num_rows * rows_per_array, num_cols * cols_per_array)
     big_array = np.zeros(big_array_shape)
-    big_array += -99
+    big_array[big_array == 0.0] == -99
 
     # Fill the big array with the smaller arrays
     for idx, array in enumerate(arrays):
-        row_start = (idx // grid_size) * rows_per_array
+        row_start = (idx // num_cols) * rows_per_array
         row_end = row_start + rows_per_array
-        col_start = (idx % grid_size) * cols_per_array
+        col_start = (idx % num_cols) * cols_per_array
         col_end = col_start + cols_per_array
         big_array[row_start:row_end, col_start:col_end] = array
 
