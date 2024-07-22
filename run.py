@@ -153,7 +153,8 @@ if __name__ == "__main__":
             overlap=opt.subdiv_overlap, wcs=wcs
         )
 
-        deconvolved_subdivs = []
+        if opt.reconstruct_subdivisions_fast:
+            deconvolved_subdivs, original_subdivs = [], []
 
         orig_fluxes = []
         deconv_fluxes = []
@@ -259,7 +260,9 @@ if __name__ == "__main__":
                     save=False, errflag=False, obj=None, tol_convergence=opt.tol_convergence
                 )
 
-            deconvolved_subdivs.append(deconvolved)
+            if opt.reconstruct_subdivisions_fast:
+                deconvolved_subdivs.append(deconvolved)
+                original_subdivs.append(subdiv.data)
 
             # if opt.add_bkg_to_deconvolved:
             #     deconvolved_bkg_added = add_artificial_sky_background(deconvolved, orig_bkg)
@@ -392,17 +395,24 @@ if __name__ == "__main__":
             print(f'Execution time [all subdivisions] + mosaicking: {np.sum(execution_times) + t_recon} seconds.')
         elif opt.reconstruct_subdivisions_fast:
             assert len(deconvolved_subdivs) > 0
+            assert len(original_subdivs) > 0
             assert np.all(
                 np.array(
                     [d.shape for d in deconvolved_subdivs]
                 ) == (opt.subdiv_size, opt.subdiv_size)
             )  # This is because the way we create subdivisions ensures all subdivisions will be of the same size.
+            assert np.all(
+                np.array(
+                    [o.shape for o in original_subdivs]
+                ) == (opt.subdiv_size, opt.subdiv_size)
+            )
 
             # shapex, shapey = find_closest_factors(len(deconvolved_subdivs)*opt.subdiv_size*opt.subdiv_size)
             # deconvolved_rearranged = np.reshape(
             #     deconvolved_subdivs, (shapey, shapex)
             # )
             deconvolved_rearranged = arrange_2d_arrays(deconvolved_subdivs)
+            original_rearranged = arrange_2d_arrays(original_subdivs)
 
         print(f'Execution time [all subdivisions]: {np.sum(execution_times)} seconds.')
 
@@ -574,6 +584,7 @@ if __name__ == "__main__":
             fits.writeto(os.path.join(dirname, f'orig_bkgrms_{basename}'), orig_bkg_rms, overwrite=True)
         elif opt.reconstruct_subdivisions_fast:
             fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_rearranged_{basename}'), deconvolved_rearranged, overwrite=True)
+            fits.writeto(os.path.join(dirname, f'original_subdiv_rearranged_{basename}'), original_rearranged, overwrite=True)
 
         # Note: If we use the subdivision approach, then the below type of background files are not needed anymore.
         for img in glob.glob('*.fits_scat_sextractor_bkg.fits'):
