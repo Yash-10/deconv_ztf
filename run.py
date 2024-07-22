@@ -99,6 +99,8 @@ if __name__ == "__main__":
         'PIXEL_SCALE': image_header['PIXSCALE']
     }
 
+    dtype = np.float32
+
     # Get WCS
     wcs = WCS(hdul[0].header)
     image = hdul[0].data
@@ -167,7 +169,7 @@ if __name__ == "__main__":
         for i, subdiv in enumerate(subdivs):
             assert subdiv.data.shape == (opt.subdiv_size, opt.subdiv_size)
             if opt.use_sextractor:
-                fits.writeto(f'{dirname}/subdiv_{i}_temp.fits', subdiv.data, overwrite=True)
+                fits.writeto(f'{dirname}/subdiv_{i}_temp.fits', subdiv.data.astype(dtype), overwrite=True)
 
             objects, orig_fluxes_subdiv, orig_bkg, orig_bkg_rms, fig = source_info(
                 subdiv.data, opt.subdiv_size, opt.subdiv_size,
@@ -269,7 +271,7 @@ if __name__ == "__main__":
 
             deconvolved = deconvolved.byteswap().newbyteorder()
             if opt.use_sextractor:
-                fits.writeto(f'{dirname}/subdiv_deconvolved_{i}_temp.fits', deconvolved, overwrite=True)
+                fits.writeto(f'{dirname}/subdiv_deconvolved_{i}_temp.fits', deconvolved.astype(dtype), overwrite=True)
             deconv_objects_subdiv, deconv_fluxes_subdiv, deconv_bkg, deconv_bkg_rms, fig = source_info(
                 deconvolved, deconvolved.shape[1], deconvolved.shape[0],
                 min_area=1, threshold=3, gain=gain, plot_positions_indicator=False,  # maskthresh=ccd_sat_level
@@ -346,17 +348,17 @@ if __name__ == "__main__":
             print(f'iterations: {iterations}')
 
             if i < 10:
-                fits.writeto(f'{dirname}/temp_deconvolved_image_0{i}.fits', deconvolved, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_deconvolved_bkg_0{i}.fits', deconv_bkg, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_deconvolved_bkgrms_0{i}.fits', deconv_bkg_rms, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_orig_bkg_0{i}.fits', orig_bkg, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_orig_bkgrms_0{i}.fits', orig_bkg_rms, header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_deconvolved_image_0{i}.fits', deconvolved.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_deconvolved_bkg_0{i}.fits', deconv_bkg.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_deconvolved_bkgrms_0{i}.fits', deconv_bkg_rms.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_orig_bkg_0{i}.fits', orig_bkg.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_orig_bkgrms_0{i}.fits', orig_bkg_rms.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
             else:
-                fits.writeto(f'{dirname}/temp_deconvolved_image_{i}.fits', deconvolved, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_deconvolved_bkg_{i}.fits', deconv_bkg, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_deconvolved_bkgrms_{i}.fits', deconv_bkg_rms, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_orig_bkg_{i}.fits', orig_bkg, header=subdiv.wcs.to_header(), overwrite=True)
-                fits.writeto(f'{dirname}/temp_orig_bkgrms_{i}.fits', orig_bkg_rms, header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_deconvolved_image_{i}.fits', deconvolved.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_deconvolved_bkg_{i}.fits', deconv_bkg.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_deconvolved_bkgrms_{i}.fits', deconv_bkg_rms.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_orig_bkg_{i}.fits', orig_bkg.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
+                fits.writeto(f'{dirname}/temp_orig_bkgrms_{i}.fits', orig_bkg_rms.astype(dtype), header=subdiv.wcs.to_header(), overwrite=True)
 
             execution_times.append(exec_times[-1])
 
@@ -420,7 +422,7 @@ if __name__ == "__main__":
         deconv_objects = np.squeeze(np.vstack(deconv_objects))
         orig_objects = np.squeeze(np.vstack(orig_objects))
     else:
-        fits.writeto(os.path.join(dirname, f'orig_{basename}'), image, overwrite=True, header=fits.getheader(opt.data_path_sciimg))
+        fits.writeto(os.path.join(dirname, f'orig_{basename}'), image.astype(dtype), overwrite=True, header=fits.getheader(opt.data_path_sciimg))
 
         orig_objects, orig_fluxes, orig_bkg, orig_bkg_rms, fig = source_info(
             image, opt.box_width, opt.box_height, min_area=5, threshold=3, gain=gain, plot_positions_indicator=False,  #  maskthresh=ccd_sat_level
@@ -457,11 +459,11 @@ if __name__ == "__main__":
     if not opt.use_subdiv:
         deconvolved = deconvolved.byteswap().newbyteorder()
         # First write deconvolved image, then update its header, then again write deconvolved image after header update.
-        fits.writeto(os.path.join(dirname, f'deconvolved_{basename}'), deconvolved, overwrite=True)
+        fits.writeto(os.path.join(dirname, f'deconvolved_{basename}'), deconvolved.astype(dtype), overwrite=True)
         deconv_header = fits.open(os.path.join(dirname, f'deconvolved_{basename}'))[0].header
         for item in wcs.to_header().items():
             deconv_header.append(item)
-        fits.writeto(os.path.join(dirname, f'deconvolved_{basename}'), deconvolved, overwrite=True, header=deconv_header)
+        fits.writeto(os.path.join(dirname, f'deconvolved_{basename}'), deconvolved.astype(dtype), overwrite=True, header=deconv_header)
         deconv_objects, deconv_fluxes, deconvolved_bkg, deconvolved_bkg_rms, fig = source_info(
             deconvolved, opt.box_width, opt.box_height, min_area=1, threshold=3, gain=gain, plot_positions_indicator=False,  # maskthresh=ccd_sat_level
             use_sextractor=opt.use_sextractor, image_name=f'deconvolved_{basename}',
@@ -471,11 +473,11 @@ if __name__ == "__main__":
         if fig is not None:
             fig.savefig(f'{dirname}/deconvolved_{opt.data_path_sciimg.split("/")[-1]}_positions.png', bbox_inches='tight')
         print(f'No. of objects (deconvolved): {len(deconv_objects)}')
-        fits.writeto(os.path.join(dirname, f'deconv_bkg_{basename}'), deconvolved_bkg, overwrite=True)
-        fits.writeto(os.path.join(dirname, f'deconv_bkgrms_{basename}'), deconvolved_bkg_rms, overwrite=True)
+        fits.writeto(os.path.join(dirname, f'deconv_bkg_{basename}'), deconvolved_bkg.astype(dtype), overwrite=True)
+        fits.writeto(os.path.join(dirname, f'deconv_bkgrms_{basename}'), deconvolved_bkg_rms.astype(dtype), overwrite=True)
 
-        fits.writeto(os.path.join(dirname, f'orig_bkg_{basename}'), orig_bkg, overwrite=True)
-        fits.writeto(os.path.join(dirname, f'orig_bkgrms_{basename}'), orig_bkg_rms, overwrite=True)
+        fits.writeto(os.path.join(dirname, f'orig_bkg_{basename}'), orig_bkg.astype(dtype), overwrite=True)
+        fits.writeto(os.path.join(dirname, f'orig_bkgrms_{basename}'), orig_bkg_rms.astype(dtype), overwrite=True)
 
     if opt.use_sextractor and opt.use_subdiv:
         CAT_COLUMNS.append('SUBDIV_NUMBER')  # Because we added `SUBDIV_NUMBER` when using subdivisions.
@@ -565,26 +567,26 @@ if __name__ == "__main__":
 
     # Save images and results.
     if opt.use_subdiv:
-        fits.writeto(os.path.join(dirname, f'orig_subdiv_{basename}'), image, overwrite=True, header=fits.getheader(opt.data_path_sciimg))
+        fits.writeto(os.path.join(dirname, f'orig_subdiv_{basename}'), image.astype(dtype), overwrite=True, header=fits.getheader(opt.data_path_sciimg))
 
         if opt.reconstruct_full_image_from_subdivisions:
             # First write deconvolved image, then update its header, then again write deconvolved image after header update.
-            fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_{basename}'), deconvolved, overwrite=True)
+            fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_{basename}'), deconvolved.astype(dtype), overwrite=True)
             deconv_header = fits.open(os.path.join(dirname, f'deconvolved_subdiv_{basename}'))[0].header
             for item in wcs.to_header().items():
                 deconv_header.append(item)
-            fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_{basename}'), deconvolved, overwrite=True, header=deconv_header)
+            fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_{basename}'), deconvolved.astype(dtype), overwrite=True, header=deconv_header)
 
-            fits.writeto(os.path.join(dirname, f'deconv_bkg_{basename}'), deconvolved_bkg, overwrite=True)
-            fits.writeto(os.path.join(dirname, f'deconv_bkgrms_{basename}'), deconvolved_bkg_rms, overwrite=True)
+            fits.writeto(os.path.join(dirname, f'deconv_bkg_{basename}'), deconvolved_bkg.astype(dtype), overwrite=True)
+            fits.writeto(os.path.join(dirname, f'deconv_bkgrms_{basename}'), deconvolved_bkg_rms.astype(dtype), overwrite=True)
 
             # NOTE: (if using the subdivision approach): Although the saved original image is as it is, the background and its RMS images are not
             # the ones estimated using the entire image, but rather it's a mosaic of bkg and RMS estimated from each subdivision.
-            fits.writeto(os.path.join(dirname, f'orig_bkg_{basename}'), orig_bkg, overwrite=True)
-            fits.writeto(os.path.join(dirname, f'orig_bkgrms_{basename}'), orig_bkg_rms, overwrite=True)
+            fits.writeto(os.path.join(dirname, f'orig_bkg_{basename}'), orig_bkg.astype(dtype), overwrite=True)
+            fits.writeto(os.path.join(dirname, f'orig_bkgrms_{basename}'), orig_bkg_rms.astype(dtype), overwrite=True)
         elif opt.reconstruct_subdivisions_fast:
-            fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_rearranged_{basename}'), deconvolved_rearranged, overwrite=True)
-            fits.writeto(os.path.join(dirname, f'original_subdiv_rearranged_{basename}'), original_rearranged, overwrite=True)
+            fits.writeto(os.path.join(dirname, f'deconvolved_subdiv_rearranged_{basename}'), deconvolved_rearranged.astype(dtype), overwrite=True)
+            fits.writeto(os.path.join(dirname, f'original_subdiv_rearranged_{basename}'), original_rearranged.astype(dtype), overwrite=True)
 
         # Note: If we use the subdivision approach, then the below type of background files are not needed anymore.
         for img in glob.glob('*.fits_scat_sextractor_bkg.fits'):
