@@ -396,6 +396,8 @@ if __name__ == "__main__":
             t_recon = timer() - t0_recon
             print(f'Execution time [all subdivisions] + mosaicking: {np.sum(execution_times) + t_recon} seconds.')
         elif opt.reconstruct_subdivisions_fast:
+            # NOTE: using this option is generally only good for visualization since using the catalogs that are stored
+            # by this script would lead to incorrect positions when using `reconstruct_subdivisions_fast`.
             assert len(deconvolved_subdivs) > 0
             assert len(original_subdivs) > 0
             assert np.all(
