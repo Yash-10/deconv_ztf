@@ -39,9 +39,9 @@ from constants import CAT_COLUMNS
 
 import matplotlib
 import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set_style('white')
-sns.set_context('paper', font_scale = 2)
+#import seaborn as sns
+#sns.set_style('white')
+#sns.set_context('paper', font_scale = 2)
 
 
 def degrade(image, psf):
