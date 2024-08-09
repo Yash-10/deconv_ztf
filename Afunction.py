@@ -1,5 +1,5 @@
 import numpy as np
-from astropy.convolution import convolve, convolve_fft
+from astropy.convolution import convolve_fft
 
 
 def Afunction(TF, x, shape=None): # todo: update docstring.
@@ -52,7 +52,7 @@ def Afunction_2d(psf, x, shape=None):
 
     """
     x = x.reshape(shape)
-    conv = convolve(x, psf, normalize_kernel=True, normalization_zero_tol=1e-4).ravel()
+    conv = convolve_fft(x, psf, normalize_kernel=True, normalization_zero_tol=1e-4).ravel()
     return conv
 
 def ATfunction_2d(psf, x, shape=None):
@@ -71,5 +71,5 @@ def ATfunction_2d(psf, x, shape=None):
 
     """
     x = x.reshape(shape)
-    conv = convolve(x, psf.conj().T, normalize_kernel=True, normalization_zero_tol=1e-4).ravel()
+    conv = convolve_fft(x, psf.conj().T, normalize_kernel=True, normalization_zero_tol=1e-4).ravel()
     return conv
