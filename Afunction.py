@@ -1,6 +1,7 @@
 import numpy as np
 from astropy.convolution import convolve_fft
-
+import pyfftw
+pyfftw.interfaces.cache.enable()
 
 def Afunction(TF, x, shape=None): # todo: update docstring.
     """Describes the PSF function.
@@ -52,7 +53,10 @@ def Afunction_2d(psf, x, shape=None):
 
     """
     x = x.reshape(shape)
-    conv = convolve_fft(x, psf, normalize_kernel=True, normalization_zero_tol=1e-4).ravel()
+    conv = convolve_fft(
+        x, psf, normalize_kernel=True, normalization_zero_tol=1e-4,
+        fftn=pyfftw.interfaces.numpy_fft.fftn, ifftn=pyfftw.interfaces.numpy_fft.ifftn
+    ).ravel()
     return conv
 
 def ATfunction_2d(psf, x, shape=None):
@@ -71,5 +75,8 @@ def ATfunction_2d(psf, x, shape=None):
 
     """
     x = x.reshape(shape)
-    conv = convolve_fft(x, psf.conj().T, normalize_kernel=True, normalization_zero_tol=1e-4).ravel()
+    conv = convolve_fft(
+        x, psf.conj().T, normalize_kernel=True, normalization_zero_tol=1e-4,
+        fftn=pyfftw.interfaces.numpy_fft.fftn, ifftn=pyfftw.interfaces.numpy_fft.ifftn
+    ).ravel()
     return conv
