@@ -1,6 +1,11 @@
+import functools
+import multiprocessing
 import numpy as np
 from astropy.convolution import convolve_fft
 import pyfftw
+# Configure PyFFTW to use all cores (the default is single-threaded)
+pyfftw.config.NUM_THREADS = multiprocessing.cpu_count()
+print(f'No. of threads to use [PyFFTW]: {pyfftw.config.NUM_THREADS}')
 pyfftw.interfaces.cache.enable()
 
 def Afunction(TF, x, shape=None): # todo: update docstring.
