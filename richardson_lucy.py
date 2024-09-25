@@ -130,14 +130,19 @@ def richardson_lucy(
 
     iter_ = 1
 
+    _shape = image.shape
+    A = partial(Afunction_2d, psf=psf, shape=_shape)
+
     for _ in range(num_iter):
         prev_x = im_deconv.copy()
-        conv = convolve(im_deconv, psf, mode='same') + eps + bkg
+        # conv = convolve(im_deconv, psf, mode='same') + eps + bkg
+        conv = A(x=im_deconv) + bkg
         if filter_epsilon:
             relative_blur = np.where(conv < filter_epsilon, 0, image / conv)
         else:
             relative_blur = image / conv
-        im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
+        # im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
+        im_deconv *= A(x=relative_blur)
 
         Fold[0:M-1] = Fold[1:M]
         Fold[M-1] = fv
