@@ -49,8 +49,8 @@ def _supported_float_type(input_dtype, allow_complex=False):
         raise ValueError("complex valued input is not supported")
     return new_float_type.get(input_dtype.char, np.float64)
 
-def get_damped_rl_objective(undamped, T=2):
-    return (-2/(T**2)) * undamped
+def get_damped_rl_objective(I, D, T=2):
+    return (-2 / (T ** 2)) * (D * np.log(I / D) - I + D)
 
 def richardson_lucy(
     image, psf, bkg, num_iter=50, clip=False, filter_epsilon=None,
@@ -92,7 +92,7 @@ def richardson_lucy(
     psf = psf.astype(float_type, copy=False)
     # im_deconv = np.full(image.shape, 0.5, dtype=float_type)
     im_deconv = image.copy()
-    psf_mirror = np.flip(psf)
+    # psf_mirror = np.flip(psf)
 
     # Small regularization parameter used to avoid 0 divisions
     eps = 1e-12
@@ -122,8 +122,9 @@ def richardson_lucy(
     fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
     if damped:
         N = 10
-        _fv_damped = get_damped_rl_objective(fv, T=T)
-        fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+        _fv_damped = get_damped_rl_objective(image, den, T=T)
+        _fv_damped = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+        fv = np.sum(_fv_damped)
 
     M = 1
     Fold = -1e30 * np.ones(M)
@@ -152,8 +153,9 @@ def richardson_lucy(
         temp = np.divide(image, den)
         fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
         if damped:
-            _fv_damped = get_damped_rl_objective(fv, T=T)
-            fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+            _fv_damped = get_damped_rl_objective(image, den, T=T)
+            _fv_damped = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+            fv = np.sum(_fv_damped)
 
         reldecrease = (Fold[M-1]-fv) / fv
         loop = reldecrease > tol and reldecrease >= 0
