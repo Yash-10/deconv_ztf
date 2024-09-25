@@ -110,6 +110,7 @@ def richardson_lucy(image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None
     if flux is None:
         flux = np.sum(image - bkg)
     x_tf = A(x=im_deconv)
+    x_tf = x_tf.reshape(image.shape)
     den = x_tf + bkg
     temp = np.divide(image, den)
     fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
@@ -129,6 +130,7 @@ def richardson_lucy(image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None
         im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
 
         x_tf = A(x=im_deconv)
+        x_tf = x_tf.reshape(image.shape)
         den = x_tf + bkg
         temp = np.divide(image, den)
         fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
