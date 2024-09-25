@@ -119,12 +119,11 @@ def richardson_lucy(
     x_tf = x_tf.reshape(image.shape)
     den = x_tf + bkg
     temp = np.divide(image, den)
+    fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
     if damped:
         N = 10
         _fv_damped = get_damped_rl_objective(fv)
         fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
-    else:
-        fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
 
     M = 1
     Fold = -1e30 * np.ones(M)
@@ -146,11 +145,10 @@ def richardson_lucy(
         x_tf = x_tf.reshape(image.shape)
         den = x_tf + bkg
         temp = np.divide(image, den)
+        fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
         if damped:
             _fv_damped = get_damped_rl_objective(fv)
             fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
-        else:
-            fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
 
         reldecrease = (Fold[M-1]-fv) / fv
         loop = reldecrease > tol and reldecrease >= 0
