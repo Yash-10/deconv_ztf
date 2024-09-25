@@ -49,8 +49,12 @@ def _supported_float_type(input_dtype, allow_complex=False):
         raise ValueError("complex valued input is not supported")
     return new_float_type.get(input_dtype.char, np.float64)
 
+def get_damped_rl_objective(undamped, T=2):
+    return (-2/(T**2)) * undamped
+
 def richardson_lucy(
-    image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None, tol=1e-4, flux=None
+    image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None,
+    tol=1e-4, flux=None, damped=True
 ):
     """Richardson-Lucy deconvolution.
 
@@ -115,7 +119,12 @@ def richardson_lucy(
     x_tf = x_tf.reshape(image.shape)
     den = x_tf + bkg
     temp = np.divide(image, den)
-    fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
+    if damped:
+        N = 10
+        _fv_damped = get_damped_rl_objective(fv)
+        fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+    else:
+        fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
 
     M = 1
     Fold = -1e30 * np.ones(M)
@@ -137,7 +146,11 @@ def richardson_lucy(
         x_tf = x_tf.reshape(image.shape)
         den = x_tf + bkg
         temp = np.divide(image, den)
-        fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
+        if damped:
+            _fv_damped = get_damped_rl_objective(fv)
+            fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+        else:
+            fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
 
         reldecrease = (Fold[M-1]-fv) / fv
         loop = reldecrease > tol and reldecrease >= 0
