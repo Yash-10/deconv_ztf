@@ -53,8 +53,8 @@ def get_damped_rl_objective(undamped, T=2):
     return (-2/(T**2)) * undamped
 
 def richardson_lucy(
-    image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None,
-    tol=1e-4, flux=None, damped=True
+    image, psf, bkg, num_iter=50, clip=False, filter_epsilon=None,
+    tol=1e-4, flux=None, damped=True, T=3
 ):
     """Richardson-Lucy deconvolution.
 
@@ -122,7 +122,7 @@ def richardson_lucy(
     fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
     if damped:
         N = 10
-        _fv_damped = get_damped_rl_objective(fv)
+        _fv_damped = get_damped_rl_objective(fv, T=T)
         fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
 
     M = 1
@@ -147,7 +147,7 @@ def richardson_lucy(
         temp = np.divide(image, den)
         fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
         if damped:
-            _fv_damped = get_damped_rl_objective(fv)
+            _fv_damped = get_damped_rl_objective(fv, T=T)
             fv = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
 
         reldecrease = (Fold[M-1]-fv) / fv
