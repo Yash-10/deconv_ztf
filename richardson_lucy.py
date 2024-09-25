@@ -142,7 +142,7 @@ def richardson_lucy(
         else:
             relative_blur = image / conv
         # im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
-        im_deconv *= A(x=relative_blur)
+        im_deconv *= AT(x=relative_blur)
 
         Fold[0:M-1] = Fold[1:M]
         Fold[M-1] = fv
