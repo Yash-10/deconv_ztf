@@ -49,7 +49,9 @@ def _supported_float_type(input_dtype, allow_complex=False):
         raise ValueError("complex valued input is not supported")
     return new_float_type.get(input_dtype.char, np.float64)
 
-def richardson_lucy(image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None, tol=1e-4, flux=None):
+def richardson_lucy(
+    image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None, tol=1e-4, flux=None
+):
     """Richardson-Lucy deconvolution.
 
     Parameters
