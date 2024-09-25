@@ -25,6 +25,7 @@ from utils import (
 from constants import CAT_COLUMNS
 
 from sgp import sgp, sgp_betaDiv
+from richardson_lucy import richardson_lucy
 
 
 def print_options(opt):
@@ -55,6 +56,7 @@ if __name__ == "__main__":
     parser.add_argument('--subdiv_overlap', type=int, default=0, help='Overlap (in pix) to use while extracting the subdivisions, only considered if --use_subdiv is specified. NOTE: This overlap is used as tried to be used for all subdivisions. When the image height and width are not both an integral multiple of the subdivisions height and width, the rightmost and bottommost subdivisions may have a different overlap than `subdiv_overlap` since in this implementation, we ensure that all subdivisions are of the same size, as provided by `subdivision_size`.')
     parser.add_argument('--sextractor_config_file_name', type=str, help='(Note: This must invariably be in the sgp_reconstruction_results/ directory, but pass only the filename to this argument and not the entire path) Name of the sextractor config file for original image. The config file for the deconvolved images is set based on the original config file. The Only used if use_sextractor is True')
     parser.add_argument('--use_sextractor', action='store_true', help='Whether to use the original SExtractor for extracting source information. *Recommended to set it to True since this script is only reliably tested for that case.*')
+    parser.add_argument('--use_rl', action='store_true', help='Whether to use Richardson-Lucy instead of SGP.')
     parser.add_argument('--use_beta_div', action='store_true', help='Whether to use beta divergence inside SGP instead of the KL divergence.')
     parser.add_argument('--initial_beta', type=float, default=1.005, help='The initial value of beta to start with.')
     parser.add_argument('--initial_lr', type=float, default=1e-3, help='The initial learning rate to use for updating beta.')
@@ -248,7 +250,12 @@ if __name__ == "__main__":
             # print(np.any(np.logical_not(np.isfinite(subdiv.data))))
             # print(np.any(subdiv.data < 0))
 
-            if opt.use_beta_div:
+            if opt.use_rl:
+                deconvolved, iterations, exec_times = richardson_lucy(
+                    subdiv.data, psf, orig_bkg, flux=np.sum(orig_fluxes_subdiv), tol=opt.tol_convergence
+                )
+
+            elif opt.use_beta_div:
                 deconvolved, iterations, _, exec_times, errs = sgp_betaDiv(
                     subdiv.data, psf, orig_bkg, init_recon=opt.init_recon, proj_type=proj_type,
                     stop_criterion=opt.stop_criterion, flux=np.sum(orig_fluxes_subdiv), scale_data=True,
@@ -435,6 +442,11 @@ if __name__ == "__main__":
         if fig is not None:
             fig.savefig(f'{dirname}/orig_{opt.data_path_sciimg.split("/")[-1]}_positions.png', bbox_inches='tight')
         print(f'No. of objects (original): {len(orig_objects)}')
+
+        if opt.use_rl:
+            deconvolved, iterations, exec_times = richardson_lucy(
+                image, psf, orig_bkg, flux=np.sum(orig_fluxes), tol=opt.tol_convergence
+            )
 
         if opt.use_beta_div:
             deconvolved, iterations, _, exec_times, errs = sgp_betaDiv(
