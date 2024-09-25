@@ -129,13 +129,13 @@ def richardson_lucy(image, psf, bkg, num_iter=50, clip=True, filter_epsilon=None
             relative_blur = image / conv
         im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
 
+        Fold[0:M-1] = Fold[1:M]
+        Fold[M-1] = fv
         x_tf = A(x=im_deconv)
         x_tf = x_tf.reshape(image.shape)
         den = x_tf + bkg
         temp = np.divide(image, den)
         fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
-        Fold[0:M-1] = Fold[1:M]
-        Fold[M-1] = fv
 
         reldecrease = (Fold[M-1]-fv) / fv
         loop = reldecrease > tol and reldecrease >= 0
