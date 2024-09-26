@@ -123,7 +123,8 @@ def richardson_lucy(
     if damped:
         N = 10
         _fv_damped = get_damped_rl_objective(image, den, T=T)
-        _fv_damped = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+        _fv_damped[_fv_damped < 1] = (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+        # _fv_damped = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
         fv = np.sum(_fv_damped)
 
     M = 1
@@ -154,7 +155,8 @@ def richardson_lucy(
         fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
         if damped:
             _fv_damped = get_damped_rl_objective(image, den, T=T)
-            _fv_damped = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+            _fv_damped[_fv_damped < 1] = (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
+            # _fv_damped = _fv_damped if _fv_damped >= 1 else (N-1)/(N+1) * (1 - _fv_damped**(N+1)) + _fv_damped ** N
             fv = np.sum(_fv_damped)
 
         reldecrease = (Fold[M-1]-fv) / fv
