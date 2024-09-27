@@ -89,7 +89,7 @@ def richardson_lucy(
     t0 = timer()  # Start clock timer.
 
     if remove_bkg_from_image:
-        image -= bkg
+        image = image - bkg
         bkg = 0.  # for compatibility with rest of the code.
 
     float_type = _supported_float_type(image.dtype)
@@ -158,7 +158,7 @@ def richardson_lucy(
             relative_blur = image / conv
         # im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
         if spatial_reg:
-            im_deconv = (1 - lambda_) * im_deconv * AT(x=relative_blur).reshape(image.shape) + lambda_ * (Ar(x=im_deconv).reshape(image.shape) + bkg)
+            im_deconv = (1 - lambda_) * im_deconv * AT(x=relative_blur).reshape(image.shape) + lambda_ * Ar(x=im_deconv).reshape(image.shape)
         else:
             im_deconv *= AT(x=relative_blur).reshape(image.shape)
 
