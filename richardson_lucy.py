@@ -123,8 +123,11 @@ def richardson_lucy(
     x_tf = A(x=im_deconv)
     x_tf = x_tf.reshape(image.shape)
     den = x_tf + bkg
-    temp = np.divide(image, den)
-    fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
+    temp = np.divide(image, den+eps)
+    if remove_bkg_from_image:
+        fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - np.sum(image)
+    else:
+        fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
     if damped:
         N = 10
         _fv_damped = get_damped_rl_objective(image, den, T=T)
@@ -164,8 +167,11 @@ def richardson_lucy(
         x_tf = A(x=im_deconv)
         x_tf = x_tf.reshape(image.shape)
         den = x_tf + bkg
-        temp = np.divide(image, den)
-        fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
+        temp = np.divide(image, den+eps)
+        if remove_bkg_from_image:
+            fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - np.sum(image)
+        else:
+            fv = np.sum(np.multiply(image, np.log(temp))) + np.sum(x_tf) - flux
         if damped:
             _fv_damped = get_damped_rl_objective(image, den, T=T)
             _fv_damped_subset = _fv_damped[_fv_damped < 1]
