@@ -141,7 +141,7 @@ def richardson_lucy(
     _shape = image.shape
     A = partial(Afunction_2d, psf=psf, shape=_shape)
     if spatial_reg:
-        lambda_ = 0.5
+        lambda_ = 0.05
         R = np.array([[0, 0.25, 0], [0.25, 0, 0.25], [0, 0.25, 0]])
         Ar = partial(Afunction_2d, psf=R, shape=_shape)
 
