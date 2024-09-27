@@ -89,7 +89,7 @@ def richardson_lucy(
     t0 = timer()  # Start clock timer.
 
     if remove_bkg_from_image:
-        image = image - bkg
+        image -= bkg
         bkg = 0.  # for compatibility with rest of the code.
 
     float_type = _supported_float_type(image.dtype)
