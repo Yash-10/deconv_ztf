@@ -254,7 +254,7 @@ if __name__ == "__main__":
                 deconvolved, iterations, exec_times = richardson_lucy(
                     subdiv.data, psf, orig_bkg, flux=np.sum(orig_fluxes_subdiv),
                     num_iter=500, tol=opt.tol_convergence, clip=False, T=2,
-                    damped=False, spatial_reg=True, remove_bkg_from_image=True
+                    damped=False, spatial_reg=False, remove_bkg_from_image=False
                 )
 
             elif opt.use_beta_div:
@@ -449,7 +449,7 @@ if __name__ == "__main__":
             deconvolved, iterations, exec_times = richardson_lucy(
                 image, psf, orig_bkg, flux=np.sum(orig_fluxes),
                 num_iter=500, tol=opt.tol_convergence, clip=False, T=2,
-                damped=False, spatial_reg=True, remove_bkg_from_image=True
+                damped=False, spatial_reg=False, remove_bkg_from_image=False
             )
 
         if opt.use_beta_div:
