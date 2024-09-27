@@ -54,14 +54,15 @@ def get_damped_rl_objective(I, D, T=2):
 
 def richardson_lucy(
     image, psf, bkg, num_iter=50, clip=False, filter_epsilon=None,
-    tol=1e-4, flux=None, damped=True, T=3
+    tol=1e-4, flux=None, damped=True, T=3, remove_bkg_from_image=False,
+    spatial_reg=False
 ):
     """Richardson-Lucy deconvolution.
 
     Parameters
     ----------
     image : ndarray
-       Input degraded image (can be n-dimensional).
+       Input degraded image (can be n-dimensional). Must never be bkg-subtracted even if remove_bkg_from_image=True.
     psf : ndarray
        The point spread function.
     bkg: ndarray
@@ -86,6 +87,10 @@ def richardson_lucy(
     .. [1] https://en.wikipedia.org/wiki/Richardson%E2%80%93Lucy_deconvolution
     """
     t0 = timer()  # Start clock timer.
+
+    if remove_bkg_from_image:
+        image = image - bkg
+        bkg = 0.  # for compatibility with rest of the code.
 
     float_type = _supported_float_type(image.dtype)
     image = image.astype(float_type, copy=False)
@@ -135,6 +140,10 @@ def richardson_lucy(
 
     _shape = image.shape
     A = partial(Afunction_2d, psf=psf, shape=_shape)
+    if spatial_reg:
+        lambda_ = 0.5
+        R = np.array([[0, 0.25, 0], [0.25, 0, 0.25], [0, 0.25, 0]])
+        Ar = partial(Afunction_2d, psf=R, shape=_shape)
 
     for _ in range(num_iter):
         prev_x = im_deconv.copy()
@@ -145,7 +154,10 @@ def richardson_lucy(
         else:
             relative_blur = image / conv
         # im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
-        im_deconv *= AT(x=relative_blur).reshape(image.shape)
+        if spatial_reg:
+            im_deconv = (1 - lambda_) * im_deconv * AT(x=relative_blur).reshape(image.shape) + lambda_ * Ar(x=im_deconv)
+        else:
+            im_deconv *= AT(x=relative_blur).reshape(image.shape)
 
         Fold[0:M-1] = Fold[1:M]
         Fold[M-1] = fv
