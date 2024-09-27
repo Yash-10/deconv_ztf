@@ -155,7 +155,7 @@ def richardson_lucy(
             relative_blur = image / conv
         # im_deconv *= convolve(relative_blur, psf_mirror, mode='same')
         if spatial_reg:
-            im_deconv = (1 - lambda_) * im_deconv * AT(x=relative_blur).reshape(image.shape) + lambda_ * Ar(x=im_deconv)
+            im_deconv = (1 - lambda_) * im_deconv * AT(x=relative_blur).reshape(image.shape) + lambda_ * Ar(x=im_deconv).reshape(image.shape)
         else:
             im_deconv *= AT(x=relative_blur).reshape(image.shape)
 
