@@ -165,7 +165,7 @@ def source_info(
                 '-CHECKIMAGE_NAME', f'{prefix}_251.fits_scat_sextractor_bkg.fits,{prefix}_251.fits_scat_sextractor_bkgrms.fits',
                 '-MAG_ZEROPOINT', f'{sextractor_parameters["MAG_ZEROPOINT"]}',
                 '-SEEING_FWHM', f'{sextractor_parameters["SEEING_FWHM"]}', '-GAIN', f'{sextractor_parameters["GAIN"]}',
-                '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}'
+                '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}', '-CLEAN', 'N'
             ]
             if not original:
                 command += [
