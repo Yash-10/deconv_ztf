@@ -168,7 +168,7 @@ def source_info(
                 '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}'
             ]
             if original:
-                command = command + ['-DETECT_THRESH', '1.5']
+                command = command + ['-DETECT_THRESH', '1']
             else:
                 command = command + [
                     '-BACK_TYPE', f'{sextractor_parameters_copy["BACK_TYPE"]}',
@@ -176,7 +176,6 @@ def source_info(
                     '-DETECT_MINAREA', f'{sextractor_parameters_copy["DETECT_MINAREA"]}',
                     '-FILTER', f'{sextractor_parameters_copy["FILTER"]}',
                     '-CLEAN', f'{sextractor_parameters_copy["CLEAN"]}',
-                    '-DETECT_THRESH', '1.5'
                 ]
             print(command)
             subprocess.run(command)
