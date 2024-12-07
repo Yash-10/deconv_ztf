@@ -165,10 +165,12 @@ def source_info(
                 '-CHECKIMAGE_NAME', f'{prefix}_251.fits_scat_sextractor_bkg.fits,{prefix}_251.fits_scat_sextractor_bkgrms.fits',
                 '-MAG_ZEROPOINT', f'{sextractor_parameters["MAG_ZEROPOINT"]}',
                 '-SEEING_FWHM', f'{sextractor_parameters["SEEING_FWHM"]}', '-GAIN', f'{sextractor_parameters["GAIN"]}',
-                '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}', '-CLEAN', 'N'
+                '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}'
             ]
-            if not original:
-                command += [
+            if original:
+                command = command + ['-DETECT_THRESH', '1.5']
+            else:
+                command = command + [
                     '-BACK_TYPE', f'{sextractor_parameters_copy["BACK_TYPE"]}',
                     '-BACK_VALUE', f'{sextractor_parameters_copy["BACK_VALUE"]}',
                     '-DETECT_MINAREA', f'{sextractor_parameters_copy["DETECT_MINAREA"]}',
