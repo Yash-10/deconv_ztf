@@ -175,7 +175,8 @@ def source_info(
                     '-BACK_VALUE', f'{sextractor_parameters_copy["BACK_VALUE"]}',
                     '-DETECT_MINAREA', f'{sextractor_parameters_copy["DETECT_MINAREA"]}',
                     '-FILTER', f'{sextractor_parameters_copy["FILTER"]}',
-                    '-CLEAN', f'{sextractor_parameters_copy["CLEAN"]}'
+                    '-CLEAN', f'{sextractor_parameters_copy["CLEAN"]}',
+                    '-DETECT_THRESH', '1.5'
                 ]
             print(command)
             subprocess.run(command)
