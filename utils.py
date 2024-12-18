@@ -167,15 +167,13 @@ def source_info(
                 '-SEEING_FWHM', f'{sextractor_parameters["SEEING_FWHM"]}', '-GAIN', f'{sextractor_parameters["GAIN"]}',
                 '-PIXEL_SCALE', f'{sextractor_parameters["PIXEL_SCALE"]}'
             ]
-            if original:
-                command = command + ['-DETECT_THRESH', '1']
-            else:
-                command = command + [
+            if not original:
+                command += [
                     '-BACK_TYPE', f'{sextractor_parameters_copy["BACK_TYPE"]}',
                     '-BACK_VALUE', f'{sextractor_parameters_copy["BACK_VALUE"]}',
                     '-DETECT_MINAREA', f'{sextractor_parameters_copy["DETECT_MINAREA"]}',
                     '-FILTER', f'{sextractor_parameters_copy["FILTER"]}',
-                    '-CLEAN', f'{sextractor_parameters_copy["CLEAN"]}',
+                    '-CLEAN', f'{sextractor_parameters_copy["CLEAN"]}'
                 ]
             print(command)
             subprocess.run(command)
