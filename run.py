@@ -265,6 +265,32 @@ if __name__ == "__main__":
                     lr=opt.initial_lr, lr_exp_param=0.1, schedule_lr=True, tol_convergence=opt.tol_convergence
                 )
             else:
+                ################################################################################
+                from astropy.convolution import Gaussian2DKernel
+                # Set FWHM to 1 pixel
+                fwhm = 1  # pixels
+                sigma = fwhm / 2.355  # Convert FWHM to sigma
+                
+                # Create a Gaussian kernel using Astropy
+                kernel_size = 5  # size of the kernel (odd number to have a center pixel)
+                gaussian_kernel = Gaussian2DKernel(sigma, x_size=kernel_size, y_size=kernel_size)
+                
+                # The Gaussian kernel is normalized to have a sum of 1, so it's a normalized Gaussian profile
+                rx = gaussian_kernel.array
+
+                from scipy.fft import fft2, ifft2
+                A_ft = fft2(psf)
+                C_ft = fft2(rx)
+
+                # Step 2: Compute the Fourier transform of B by dividing A_ft by C_ft
+                # To avoid division by zero, we add a small constant (epsilon) to the denominator
+                epsilon = 1e-8
+                B_ft = A_ft / (C_ft + epsilon)
+
+                # Step 3: Apply the inverse Fourier transform to get B
+                psf = np.abs(ifft2(B_ft))  # Taking absolute value to ensure no complex values
+                ################################################################################
+
                 deconvolved, iterations, _, exec_times, errs = sgp(
                     subdiv.data, psf, orig_bkg, init_recon=opt.init_recon, proj_type=proj_type,
                     stop_criterion=opt.stop_criterion, flux=np.sum(orig_fluxes_subdiv), scale_data=True,  # flux=np.sum(orig_fluxes_subdiv)
