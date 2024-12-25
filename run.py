@@ -289,6 +289,7 @@ if __name__ == "__main__":
 
                 # Step 3: Apply the inverse Fourier transform to get B
                 psf = np.fft.fftshift(np.abs(ifft2(B_ft)))  # Taking absolute value to ensure no complex values
+                psf = psf / psf.sum()  # normalize
                 ################################################################################
 
                 deconvolved, iterations, _, exec_times, errs = sgp(
