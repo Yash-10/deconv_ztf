@@ -272,7 +272,7 @@ if __name__ == "__main__":
                 sigma = fwhm / 2.355  # Convert FWHM to sigma
                 
                 # Create a Gaussian kernel using Astropy
-                kernel_size = 5  # size of the kernel (odd number to have a center pixel)
+                kernel_size = 23  # size of the kernel (odd number to have a center pixel)
                 gaussian_kernel = Gaussian2DKernel(sigma, x_size=kernel_size, y_size=kernel_size)
                 
                 # The Gaussian kernel is normalized to have a sum of 1, so it's a normalized Gaussian profile
@@ -288,7 +288,7 @@ if __name__ == "__main__":
                 B_ft = A_ft / (C_ft + epsilon)
 
                 # Step 3: Apply the inverse Fourier transform to get B
-                psf = np.abs(ifft2(B_ft))  # Taking absolute value to ensure no complex values
+                psf = np.fft.fftshift(np.abs(ifft2(B_ft)))  # Taking absolute value to ensure no complex values
                 ################################################################################
 
                 deconvolved, iterations, _, exec_times, errs = sgp(
