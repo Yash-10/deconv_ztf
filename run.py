@@ -69,6 +69,7 @@ if __name__ == "__main__":
     parser.add_argument('--interpolate_bad_pixels', action='store_true', help='If specified, will mask non-finite pixel values (NaN/Inf) or saturated pixels and replace them by interpolating from nearby values.')
     parser.add_argument('--pixel_mask', type=str, default='', help='Data path containing a pixel mask. A FITS file. > 0 corresponds to bad pixels and 0 corresponds to good pixels.')
     parser.add_argument('--perform_catalog_crossmatching', action='store_true', help='If specified, will crossmatch detected sources from the original image and the deconvolved image.')
+    parser.add_argument('--use_magain_approach', action='store_true', help='If specified, will use the approach of `P. Magain et al 1998 ApJ 494 472` to deconvolve using a narrower PSF.')
     # parser.add_argument('--crossmatch_filename_prefix', type=str, help='Prefix to use to save the crossmatched catalogs. Only used if `perform_catalog_crossmatching = True`.')
 
     opt = parser.parse_args()
@@ -265,32 +266,31 @@ if __name__ == "__main__":
                     lr=opt.initial_lr, lr_exp_param=0.1, schedule_lr=True, tol_convergence=opt.tol_convergence
                 )
             else:
-                ################################################################################
-                from astropy.convolution import Gaussian2DKernel
-                # Set FWHM to 1 pixel
-                fwhm = 1  # pixels
-                sigma = fwhm / 2.355  # Convert FWHM to sigma
-                
-                # Create a Gaussian kernel using Astropy
-                kernel_size = 23  # size of the kernel (odd number to have a center pixel)
-                gaussian_kernel = Gaussian2DKernel(sigma, x_size=kernel_size, y_size=kernel_size)
-                
-                # The Gaussian kernel is normalized to have a sum of 1, so it's a normalized Gaussian profile
-                rx = gaussian_kernel.array
-
-                from scipy.fft import fft2, ifft2
-                A_ft = fft2(psf)
-                C_ft = fft2(rx)
-
-                # Step 2: Compute the Fourier transform of B by dividing A_ft by C_ft
-                # To avoid division by zero, we add a small constant (epsilon) to the denominator
-                epsilon = 1e-8
-                B_ft = A_ft / (C_ft + epsilon)
-
-                # Step 3: Apply the inverse Fourier transform to get B
-                psf = np.fft.fftshift(np.abs(ifft2(B_ft)))  # Taking absolute value to ensure no complex values
-                psf = psf / psf.sum()  # normalize
-                ################################################################################
+                if use_magain_approach:
+                    from astropy.convolution import Gaussian2DKernel
+                    # Set FWHM to 1 pixel
+                    fwhm = 1  # pixels
+                    sigma = fwhm / 2.355  # Convert FWHM to sigma
+                    
+                    # Create a Gaussian kernel using Astropy
+                    kernel_size = 23  # size of the kernel (odd number to have a center pixel). This must be the same size as the PSF.
+                    gaussian_kernel = Gaussian2DKernel(sigma, x_size=kernel_size, y_size=kernel_size)
+                    
+                    # The Gaussian kernel is normalized to have a sum of 1, so it's a normalized Gaussian profile
+                    rx = gaussian_kernel.array
+    
+                    from scipy.fft import fft2, ifft2
+                    A_ft = fft2(psf)
+                    C_ft = fft2(rx)
+    
+                    # Step 2: Compute the Fourier transform of B by dividing A_ft by C_ft
+                    # To avoid division by zero, we add a small constant (epsilon) to the denominator
+                    epsilon = 1e-8
+                    B_ft = A_ft / (C_ft + epsilon)
+    
+                    # Step 3: Apply the inverse Fourier transform to get B
+                    psf = np.fft.fftshift(np.abs(ifft2(B_ft)))  # Taking absolute value to ensure no complex values
+                    psf = psf / psf.sum()  # normalize
 
                 deconvolved, iterations, _, exec_times, errs = sgp(
                     subdiv.data, psf, orig_bkg, init_recon=opt.init_recon, proj_type=proj_type,
