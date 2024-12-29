@@ -1,0 +1,422 @@
+------------ Options ------------
+data_path_sciimg:		/kaggle/working/ztf_20221120493183_000626_zr_c12_o_q2_sciimg.fits
+data_path_psf:		/kaggle/working/ztf_20221120493183_000626_zr_c12_o_q2_sciimgdaopsfcent.fits
+scale_psf:		False
+psf_scale_fwhm:		1.2
+init_recon:		2
+stop_criterion:		3
+flip_image:		False
+box_height:		64
+box_width:		64
+use_subdiv:		True
+subdiv_size:		512
+subdiv_overlap:		10
+sextractor_config_file_name:		sextractor_config.fits_scat_sextractor.sex
+use_sextractor:		True
+use_rl:		True
+use_beta_div:		False
+initial_beta:		1.005
+initial_lr:		0.001
+tol_convergence:		0.0001
+gain:		None
+saturate:		None
+reconstruct_full_image_from_subdivisions:		True
+reconstruct_subdivisions_fast:		False
+interpolate_bad_pixels:		True
+pixel_mask:		
+perform_catalog_crossmatching:		True
+------------ End ----------------
+
+
+['source-extractor', 'subdiv_0_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_0_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_0_251.fits_scat_sextractor_bkg.fits,subdiv_orig_0_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 0] (original): 38
+['source-extractor', 'subdiv_deconvolved_0_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_0_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_0_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_0_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 0] (deconvolved): 833
+iterations: 218
+['source-extractor', 'subdiv_1_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_1_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_1_251.fits_scat_sextractor_bkg.fits,subdiv_orig_1_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 1] (original): 30
+['source-extractor', 'subdiv_deconvolved_1_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_1_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_1_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_1_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 1] (deconvolved): 1131
+iterations: 262
+['source-extractor', 'subdiv_2_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_2_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_2_251.fits_scat_sextractor_bkg.fits,subdiv_orig_2_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 2] (original): 28
+['source-extractor', 'subdiv_deconvolved_2_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_2_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_2_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_2_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 2] (deconvolved): 668
+iterations: 198
+['source-extractor', 'subdiv_3_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_3_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_3_251.fits_scat_sextractor_bkg.fits,subdiv_orig_3_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 3] (original): 34
+['source-extractor', 'subdiv_deconvolved_3_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_3_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_3_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_3_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 3] (deconvolved): 1060
+iterations: 251
+['source-extractor', 'subdiv_4_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_4_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_4_251.fits_scat_sextractor_bkg.fits,subdiv_orig_4_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 4] (original): 32
+['source-extractor', 'subdiv_deconvolved_4_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_4_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_4_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_4_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 4] (deconvolved): 477
+iterations: 180
+['source-extractor', 'subdiv_5_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_5_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_5_251.fits_scat_sextractor_bkg.fits,subdiv_orig_5_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 5] (original): 27
+['source-extractor', 'subdiv_deconvolved_5_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_5_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_5_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_5_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 5] (deconvolved): 1312
+iterations: 271
+['source-extractor', 'subdiv_6_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_6_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_6_251.fits_scat_sextractor_bkg.fits,subdiv_orig_6_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 6] (original): 25
+['source-extractor', 'subdiv_deconvolved_6_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_6_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_6_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_6_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 6] (deconvolved): 1410
+iterations: 328
+['source-extractor', 'subdiv_7_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_7_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_7_251.fits_scat_sextractor_bkg.fits,subdiv_orig_7_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 7] (original): 35
+['source-extractor', 'subdiv_deconvolved_7_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_7_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_7_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_7_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 7] (deconvolved): 1312
+iterations: 309
+['source-extractor', 'subdiv_8_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_8_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_8_251.fits_scat_sextractor_bkg.fits,subdiv_orig_8_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 8] (original): 34
+['source-extractor', 'subdiv_deconvolved_8_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_8_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_8_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_8_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 8] (deconvolved): 579
+iterations: 198
+['source-extractor', 'subdiv_9_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_9_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_9_251.fits_scat_sextractor_bkg.fits,subdiv_orig_9_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 9] (original): 43
+['source-extractor', 'subdiv_deconvolved_9_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_9_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_9_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_9_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 9] (deconvolved): 1071
+iterations: 242
+['source-extractor', 'subdiv_10_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_10_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_10_251.fits_scat_sextractor_bkg.fits,subdiv_orig_10_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 10] (original): 29
+['source-extractor', 'subdiv_deconvolved_10_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_10_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_10_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_10_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 10] (deconvolved): 1359
+iterations: 287
+['source-extractor', 'subdiv_11_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_11_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_11_251.fits_scat_sextractor_bkg.fits,subdiv_orig_11_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 11] (original): 36
+['source-extractor', 'subdiv_deconvolved_11_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_11_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_11_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_11_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 11] (deconvolved): 367
+iterations: 157
+['source-extractor', 'subdiv_12_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_12_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_12_251.fits_scat_sextractor_bkg.fits,subdiv_orig_12_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 12] (original): 47
+['source-extractor', 'subdiv_deconvolved_12_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_12_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_12_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_12_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 12] (deconvolved): 425
+iterations: 165
+['source-extractor', 'subdiv_13_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_13_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_13_251.fits_scat_sextractor_bkg.fits,subdiv_orig_13_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 13] (original): 47
+['source-extractor', 'subdiv_deconvolved_13_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_13_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_13_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_13_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 13] (deconvolved): 492
+iterations: 169
+['source-extractor', 'subdiv_14_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_14_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_14_251.fits_scat_sextractor_bkg.fits,subdiv_orig_14_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 14] (original): 32
+['source-extractor', 'subdiv_deconvolved_14_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_14_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_14_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_14_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 14] (deconvolved): 910
+iterations: 227
+['source-extractor', 'subdiv_15_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_15_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_15_251.fits_scat_sextractor_bkg.fits,subdiv_orig_15_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 15] (original): 33
+['source-extractor', 'subdiv_deconvolved_15_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_15_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_15_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_15_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 15] (deconvolved): 982
+iterations: 238
+['source-extractor', 'subdiv_16_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_16_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_16_251.fits_scat_sextractor_bkg.fits,subdiv_orig_16_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 16] (original): 40
+['source-extractor', 'subdiv_deconvolved_16_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_16_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_16_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_16_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 16] (deconvolved): 1124
+iterations: 262
+['source-extractor', 'subdiv_17_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_17_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_17_251.fits_scat_sextractor_bkg.fits,subdiv_orig_17_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 17] (original): 39
+['source-extractor', 'subdiv_deconvolved_17_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_17_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_17_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_17_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 17] (deconvolved): 71
+iterations: 101
+['source-extractor', 'subdiv_18_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_18_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_18_251.fits_scat_sextractor_bkg.fits,subdiv_orig_18_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 18] (original): 36
+['source-extractor', 'subdiv_deconvolved_18_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_18_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_18_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_18_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 18] (deconvolved): 1286
+iterations: 276
+['source-extractor', 'subdiv_19_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_19_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_19_251.fits_scat_sextractor_bkg.fits,subdiv_orig_19_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 19] (original): 45
+['source-extractor', 'subdiv_deconvolved_19_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_19_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_19_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_19_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 19] (deconvolved): 1062
+iterations: 245
+['source-extractor', 'subdiv_20_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_20_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_20_251.fits_scat_sextractor_bkg.fits,subdiv_orig_20_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 20] (original): 46
+['source-extractor', 'subdiv_deconvolved_20_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_20_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_20_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_20_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 20] (deconvolved): 1195
+iterations: 257
+['source-extractor', 'subdiv_21_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_21_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_21_251.fits_scat_sextractor_bkg.fits,subdiv_orig_21_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 21] (original): 46
+['source-extractor', 'subdiv_deconvolved_21_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_21_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_21_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_21_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 21] (deconvolved): 772
+iterations: 218
+['source-extractor', 'subdiv_22_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_22_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_22_251.fits_scat_sextractor_bkg.fits,subdiv_orig_22_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 22] (original): 39
+['source-extractor', 'subdiv_deconvolved_22_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_22_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_22_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_22_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 22] (deconvolved): 565
+iterations: 188
+['source-extractor', 'subdiv_23_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_23_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_23_251.fits_scat_sextractor_bkg.fits,subdiv_orig_23_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 23] (original): 52
+['source-extractor', 'subdiv_deconvolved_23_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_23_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_23_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_23_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 23] (deconvolved): 1108
+iterations: 263
+['source-extractor', 'subdiv_24_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_24_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_24_251.fits_scat_sextractor_bkg.fits,subdiv_orig_24_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 24] (original): 41
+['source-extractor', 'subdiv_deconvolved_24_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_24_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_24_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_24_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 24] (deconvolved): 856
+iterations: 209
+['source-extractor', 'subdiv_25_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_25_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_25_251.fits_scat_sextractor_bkg.fits,subdiv_orig_25_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 25] (original): 44
+['source-extractor', 'subdiv_deconvolved_25_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_25_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_25_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_25_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 25] (deconvolved): 1097
+iterations: 251
+['source-extractor', 'subdiv_26_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_26_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_26_251.fits_scat_sextractor_bkg.fits,subdiv_orig_26_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 26] (original): 47
+['source-extractor', 'subdiv_deconvolved_26_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_26_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_26_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_26_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 26] (deconvolved): 1066
+iterations: 245
+['source-extractor', 'subdiv_27_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_27_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_27_251.fits_scat_sextractor_bkg.fits,subdiv_orig_27_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 27] (original): 47
+['source-extractor', 'subdiv_deconvolved_27_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_27_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_27_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_27_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 27] (deconvolved): 1237
+iterations: 262
+['source-extractor', 'subdiv_28_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_28_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_28_251.fits_scat_sextractor_bkg.fits,subdiv_orig_28_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 28] (original): 43
+['source-extractor', 'subdiv_deconvolved_28_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_28_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_28_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_28_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 28] (deconvolved): 211
+iterations: 137
+['source-extractor', 'subdiv_29_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_29_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_29_251.fits_scat_sextractor_bkg.fits,subdiv_orig_29_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 29] (original): 43
+['source-extractor', 'subdiv_deconvolved_29_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_29_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_29_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_29_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 29] (deconvolved): 1002
+iterations: 240
+['source-extractor', 'subdiv_30_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_30_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_30_251.fits_scat_sextractor_bkg.fits,subdiv_orig_30_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 30] (original): 32
+['source-extractor', 'subdiv_deconvolved_30_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_30_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_30_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_30_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 30] (deconvolved): 832
+iterations: 228
+['source-extractor', 'subdiv_31_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_31_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_31_251.fits_scat_sextractor_bkg.fits,subdiv_orig_31_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 31] (original): 44
+['source-extractor', 'subdiv_deconvolved_31_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_31_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_31_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_31_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 31] (deconvolved): 679
+iterations: 195
+['source-extractor', 'subdiv_32_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_32_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_32_251.fits_scat_sextractor_bkg.fits,subdiv_orig_32_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 32] (original): 50
+['source-extractor', 'subdiv_deconvolved_32_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_32_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_32_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_32_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 32] (deconvolved): 608
+iterations: 191
+['source-extractor', 'subdiv_33_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_33_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_33_251.fits_scat_sextractor_bkg.fits,subdiv_orig_33_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 33] (original): 47
+['source-extractor', 'subdiv_deconvolved_33_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_33_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_33_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_33_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 33] (deconvolved): 807
+iterations: 218
+['source-extractor', 'subdiv_34_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_34_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_34_251.fits_scat_sextractor_bkg.fits,subdiv_orig_34_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 34] (original): 44
+['source-extractor', 'subdiv_deconvolved_34_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_34_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_34_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_34_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 34] (deconvolved): 955
+iterations: 229
+['source-extractor', 'subdiv_35_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_35_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_35_251.fits_scat_sextractor_bkg.fits,subdiv_orig_35_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 35] (original): 33
+['source-extractor', 'subdiv_deconvolved_35_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_35_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_35_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_35_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 35] (deconvolved): 135
+iterations: 128
+['source-extractor', 'subdiv_36_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_36_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_36_251.fits_scat_sextractor_bkg.fits,subdiv_orig_36_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 36] (original): 38
+['source-extractor', 'subdiv_deconvolved_36_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_36_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_36_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_36_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 36] (deconvolved): 315
+iterations: 154
+['source-extractor', 'subdiv_37_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_37_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_37_251.fits_scat_sextractor_bkg.fits,subdiv_orig_37_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 37] (original): 30
+['source-extractor', 'subdiv_deconvolved_37_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_37_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_37_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_37_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 37] (deconvolved): 1132
+iterations: 257
+['source-extractor', 'subdiv_38_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_38_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_38_251.fits_scat_sextractor_bkg.fits,subdiv_orig_38_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 38] (original): 39
+['source-extractor', 'subdiv_deconvolved_38_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_38_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_38_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_38_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 38] (deconvolved): 932
+iterations: 235
+['source-extractor', 'subdiv_39_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_39_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_39_251.fits_scat_sextractor_bkg.fits,subdiv_orig_39_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 39] (original): 39
+['source-extractor', 'subdiv_deconvolved_39_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_39_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_39_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_39_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 39] (deconvolved): 663
+iterations: 205
+['source-extractor', 'subdiv_40_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_40_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_40_251.fits_scat_sextractor_bkg.fits,subdiv_orig_40_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 40] (original): 39
+['source-extractor', 'subdiv_deconvolved_40_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_40_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_40_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_40_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 40] (deconvolved): 178
+iterations: 127
+['source-extractor', 'subdiv_41_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_41_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_41_251.fits_scat_sextractor_bkg.fits,subdiv_orig_41_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 41] (original): 40
+['source-extractor', 'subdiv_deconvolved_41_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_41_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_41_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_41_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 41] (deconvolved): 209
+iterations: 129
+['source-extractor', 'subdiv_42_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_42_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_42_251.fits_scat_sextractor_bkg.fits,subdiv_orig_42_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 42] (original): 29
+['source-extractor', 'subdiv_deconvolved_42_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_42_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_42_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_42_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 42] (deconvolved): 361
+iterations: 166
+['source-extractor', 'subdiv_43_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_43_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_43_251.fits_scat_sextractor_bkg.fits,subdiv_orig_43_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 43] (original): 34
+['source-extractor', 'subdiv_deconvolved_43_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_43_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_43_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_43_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 43] (deconvolved): 275
+iterations: 154
+['source-extractor', 'subdiv_44_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_44_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_44_251.fits_scat_sextractor_bkg.fits,subdiv_orig_44_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 44] (original): 33
+['source-extractor', 'subdiv_deconvolved_44_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_44_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_44_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_44_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 44] (deconvolved): 1239
+iterations: 274
+['source-extractor', 'subdiv_45_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_45_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_45_251.fits_scat_sextractor_bkg.fits,subdiv_orig_45_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 45] (original): 39
+['source-extractor', 'subdiv_deconvolved_45_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_45_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_45_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_45_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 45] (deconvolved): 944
+iterations: 242
+['source-extractor', 'subdiv_46_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_46_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_46_251.fits_scat_sextractor_bkg.fits,subdiv_orig_46_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 46] (original): 36
+['source-extractor', 'subdiv_deconvolved_46_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_46_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_46_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_46_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 46] (deconvolved): 771
+iterations: 217
+['source-extractor', 'subdiv_47_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_47_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_47_251.fits_scat_sextractor_bkg.fits,subdiv_orig_47_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 47] (original): 32
+Params: Error(Number)=1.383
+Tuning: Bin Factor(Double)=8.0
+Processing: Split, BasicParallel
+Binning rows for table 2......................................................
+Time: 0.0s
+1593 row refs for 1255 rows in 1558 bins
+(average bin occupancy 1.0224648)
+Scanning rows for table 1.....................................................
+Time: 0.1s
+Elapsed time for match: 0 seconds
+Identify shared refs..........................................................
+Time: 0.0s
+Map links to groups...........................................................
+Time: 0.0s
+Populate index maps...........................................................
+Time: 0.0s
+Params: Error(Number)=1.383
+Tuning: Bin Factor(Double)=8.0
+Processing: Split, BasicParallel
+Binning rows for table 1......................................................
+Time: 0.1s
+42029 row refs for 33204 rows in 31428 bins
+(average bin occupancy 1.3373107)
+Scanning rows for table 2.....................................................
+Time: 0.0s
+Elapsed time for match: 0 seconds
+Identify shared refs..........................................................
+Time: 0.0s
+Map links to groups...........................................................
+Time: 0.0s
+Populate index maps...........................................................
+Time: 0.0s
+Params: Error(Number)=1.383
+Tuning: Bin Factor(Double)=8.0
+Processing: Split, BasicParallel
+Attempt to locate restricted common region
+Assessing range of coordinates from table 1...................................
+Time: 0.0s
+Coverage is: 0.0727 .. 3067.771, 1.6796 .. 3075.383
+Assessing range of coordinates from table 2...................................
+Time: 0.0s
+Coverage is: -0.7168 .. 3071.7534, -0.9917 .. 3077.7686
+Potential match region: 0.0727 .. 3067.771, 1.6796 .. 3075.383
+Counting rows in match region for table 1.....................................
+Time: 0.0s
+33204 rows in match region
+Counting rows in match region for table 2.....................................
+Time: 0.0s
+1251 rows in match region
+Binning rows for table 2......................................................
+Time: 0.0s
+4/1255 rows excluded (out of match region)
+1587 row refs for 1255 rows in 1552 bins
+(average bin occupancy 1.0225515)
+Scanning rows for table 1.....................................................
+Time: 0.1s
+Eliminating multiple row references...........................................
+Time: 0.0s
+Elapsed time for match: 0 seconds
+Populate index maps...........................................................
+Time: 0.0s
+Params: Error(Number)=1.383
+Tuning: Bin Factor(Double)=8.0
+Processing: Split, BasicParallel
+Attempt to locate restricted common region
+Assessing range of coordinates from table 1...................................
+Time: 0.0s
+Coverage is: 0.0727 .. 3067.771, 1.6796 .. 3075.383
+Assessing range of coordinates from table 2...................................
+Time: 0.0s
+Coverage is: -0.7168 .. 3071.7534, -0.9917 .. 3077.7686
+Potential match region: 0.0727 .. 3067.771, 1.6796 .. 3075.383
+Counting rows in match region for table 1.....................................
+Time: 0.0s
+33204 rows in match region
+Counting rows in match region for table 2.....................................
+Time: 0.0s
+1251 rows in match region
+Binning rows for table 2......................................................
+Time: 0.0s
+4/1255 rows excluded (out of match region)
+1587 row refs for 1255 rows in 1552 bins
+(average bin occupancy 1.0225515)
+Scanning rows for table 1.....................................................
+Time: 0.1s
+Elapsed time for match: 0 seconds
+Identify shared refs..........................................................
+Time: 0.0s
+Map links to groups...........................................................
+Time: 0.0s
+Populate index maps...........................................................
+Time: 0.0s
+Params: Error(Number)=1.383
+Tuning: Bin Factor(Double)=8.0
+Processing: Split, BasicParallel
+Binning rows for table 2......................................................
+Time: 0.0s
+1593 row refs for 1255 rows in 1558 bins
+(average bin occupancy 1.0224648)
+Scanning rows for table 1.....................................................
+Time: 0.1s
+Elapsed time for match: 0 seconds
+Identify shared refs..........................................................
+Time: 0.0s
+Map links to groups...........................................................
+Time: 0.0s
+Populate index maps...........................................................
+Time: 0.0s
+Params: Error(Number)=1.383
+Tuning: Bin Factor(Double)=8.0
+Processing: Split, BasicParallel
+Binning rows for table 1......................................................
+Time: 0.1s
+42029 row refs for 33204 rows in 31428 bins
+(average bin occupancy 1.3373107)
+Scanning rows for table 2.....................................................
+Time: 0.0s
+Elapsed time for match: 0 seconds
+Identify shared refs..........................................................
+Time: 0.0s
+Map links to groups...........................................................
+Time: 0.0s
+Populate index maps...........................................................
+Time: 0.0s
+Params: Error(Number)=1.383
+Tuning: Bin Factor(Double)=8.0
+Processing: Split, BasicParallel
+Binning rows for table 1......................................................
+Time: 0.1s
+42029 row refs for 33204 rows in 31428 bins
+(average bin occupancy 1.3373107)
+Scanning rows for table 2.....................................................
+Time: 0.0s
+Elapsed time for match: 0 seconds
+Identify shared refs..........................................................
+Time: 0.0s
+Map links to groups...........................................................
+Time: 0.0s
+Populate index maps...........................................................
+Time: 0.0s
+['source-extractor', 'subdiv_deconvolved_47_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_47_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_47_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_47_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 47] (deconvolved): 122
+iterations: 129
+['source-extractor', 'subdiv_48_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_orig_48_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_orig_48_251.fits_scat_sextractor_bkg.fits,subdiv_orig_48_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012']
+No. of objects [subdivision 48] (original): 34
+['source-extractor', 'subdiv_deconvolved_48_temp.fits', '-c', 'sextractor_config.fits_scat_sextractor.sex', '-CATALOG_NAME', 'subdiv_deconv_48_251.fits_scat_sextractor.csv', '-CHECKIMAGE_NAME', 'subdiv_deconv_48_251.fits_scat_sextractor_bkg.fits,subdiv_deconv_48_251.fits_scat_sextractor_bkgrms.fits', '-MAG_ZEROPOINT', '26.212406', '-SEEING_FWHM', '3.124044', '-GAIN', '6.1', '-PIXEL_SCALE', '1.012', '-BACK_TYPE', 'MANUAL', '-BACK_VALUE', '0', '-DETECT_MINAREA', '1', '-FILTER', 'N', '-CLEAN', 'N']
+No. of objects [subdivision 48] (deconvolved): 185
+iterations: 131
+Execution time [all subdivisions] + mosaicking: 3077.0048012029993 seconds.
+Execution time [all subdivisions]: 2835.500755564999 seconds.
+[Original]: 1389 sources out of 1870 remaining after removing duplicates
+[Deconvolved]: 33330 sources out of 38382 remaining after removing duplicates
+1255 rows remaining out of 1389 rows in the original catalog after filtering out rows with ISOAREAF < 5
+Total flux (before): 70623576.48851
+Total flux (after): 90637302.99951962
