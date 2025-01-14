@@ -271,7 +271,7 @@ if __name__ == "__main__":
                     lr=opt.initial_lr, lr_exp_param=0.1, schedule_lr=True, tol_convergence=opt.tol_convergence
                 )
             else:
-                if use_magain_approach:
+                if opt.use_magain_approach:
                     from astropy.convolution import Gaussian2DKernel
                     # Set FWHM to 1 pixel
                     fwhm = 1  # pixels
