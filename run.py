@@ -61,7 +61,7 @@ if __name__ == "__main__":
     parser.add_argument('--initial_beta', type=float, default=1.005, help='The initial value of beta to start with.')
     parser.add_argument('--initial_lr', type=float, default=1e-3, help='The initial learning rate to use for updating beta.')
     parser.add_argument('--tol_convergence', type=float, default=1e-4, help='The tolerance level to use for terminating the SGP iterations.')
-    parser.add_argument('--gain', type=float, default=None, help='CCD gain')
+    parser.add_argument('--gain', type=float, default=None, help='CCD gain (in e-/ADU)')
     parser.add_argument('--saturate', type=float, default=None, help='CCD saturating pixel value.')
     # Note: if both reconstruct_full_image_from_subdivisions and reconstruct_subdivisions_fast are provided, reconstruct_full_image_from_subdivisions will take precedence. 
     parser.add_argument('--reconstruct_full_image_from_subdivisions', action='store_true', help='If specified, will reconstruct the entire image from subdivisions. This step is a big bottleneck, so use it only when the entire image is required. This does not affect any source properties: everything else is intact.')
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     # TODO: Not all images will have the same header keywords. So we can make this optional, only when the user wants, to prevent errors.
     sextractor_parameters = {
         'MAG_ZEROPOINT': image_header['MAGZP'],
-        'GAIN': image_header['GAIN'],
+        'GAIN': gain,
         'SEEING_FWHM': image_header['SEEING'] * image_header['PIXSCALE'],
         'PIXEL_SCALE': image_header['PIXSCALE']
     }
