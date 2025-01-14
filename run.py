@@ -71,6 +71,7 @@ if __name__ == "__main__":
     parser.add_argument('--perform_catalog_crossmatching', action='store_true', help='If specified, will crossmatch detected sources from the original image and the deconvolved image.')
     parser.add_argument('--use_magain_approach', action='store_true', help='If specified, will use the approach of `P. Magain et al 1998 ApJ 494 472` to deconvolve using a narrower PSF.')
     # parser.add_argument('--crossmatch_filename_prefix', type=str, help='Prefix to use to save the crossmatched catalogs. Only used if `perform_catalog_crossmatching = True`.')
+    parser.add_argument('--set_bkg_to_zero', action='store_true', help='If specified, will set background for the original image to zero. This is helpful to deconvolve images that are already bkg-subtracted.')
 
     opt = parser.parse_args()
     print_options(opt)
@@ -181,6 +182,10 @@ if __name__ == "__main__":
                 defaultFile=opt.sextractor_config_file_name, i=i,
                 sextractor_parameters=sextractor_parameters, original=True, use_subdiv=True
             )
+            if opt.set_bkg_to_zero:
+                # this is a hacky way to overwrite the bkg to zero.
+                # Ideally, we would have wanted to set these inside source_info itself.
+                orig_bkg, orig_bkg_rms = np.zeros_like(orig_bkg), np.zeros_like(orig_bkg_rms)
 
             if objects is None:
                 print(f'\n\nNo source detected in subdivision {i}\n\n')
@@ -423,6 +428,10 @@ if __name__ == "__main__":
             orig_bkg, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkg", original=True)
             orig_bkg_rms, _ = reconstruct_full_image_from_patches(hdul[0].header, string_key="bkgrms", original=True)
 
+            if opt.set_bkg_to_zero:
+                assert np.all(orig_bkg == 0.)
+                assert np.all(orig_bkg_rms == 0.)
+
             assert deconvolved.shape == image.shape
             assert deconvolved_bkg.shape == image.shape
             assert deconvolved_bkg_rms.shape == image.shape
@@ -467,6 +476,10 @@ if __name__ == "__main__":
             use_sextractor=opt.use_sextractor, image_name=f'orig_{basename}', defaultFile=opt.sextractor_config_file_name,
             sextractor_parameters=sextractor_parameters, original=True, use_subdiv=False
         )
+        if opt.set_bkg_to_zero:
+            # this is a hacky way to overwrite the bkg to zero.
+            # Ideally, we would have wanted to set these inside source_info itself.
+            orig_bkg, orig_bkg_rms = np.zeros_like(orig_bkg), np.zeros_like(orig_bkg_rms)
 
         if fig is not None:
             fig.savefig(f'{dirname}/orig_{opt.data_path_sciimg.split("/")[-1]}_positions.png', bbox_inches='tight')
