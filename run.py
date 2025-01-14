@@ -99,7 +99,7 @@ if __name__ == "__main__":
         'MAG_ZEROPOINT': image_header['MAGZP'],
         'GAIN': gain,
         'SEEING_FWHM': image_header['SEEING'] * image_header['PIXSCALE'],
-        'PIXEL_SCALE': image_header['PIXSCALE']
+        'PIXEL_SCALE': image_header['PIXSCALE']  # pixel scale, in arcsec per pixel.
     }
 
     dtype = np.float32
