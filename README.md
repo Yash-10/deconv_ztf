@@ -24,10 +24,6 @@ the SGP algorithm with beta divergence (see [this paper](https://www.sciencedire
 - The folder `sgp_reconstruction_results` contains SExtractor parameter and configuration files. This is also the folder where the outputs will be stored after deconvolution is run.
 
 ## Caveats
-- Please note that the code in `run.py` saves coordinates in the (0, 0) pixel convention, whereas the FITS WCS convention is (1, 1). This means if you're comparing these sky coordinates with an external catalog that used the (1, 1) convention, you would need to make two changes in the catalogs output by the code (see [this page](https://photutils.readthedocs.io/en/stable/getting_started/pixel_conventions.html) for more discussion):
-    - Step 1: Add 1 to the x- and y-pixel coordinates (to make it to the (1, 1) convention)
-    - Step 2: Convert those to sky coordinates using, say, [`pix_to_skycoord`](https://docs.astropy.org/en/latest/api/astropy.wcs.utils.pixel_to_skycoord.html) - use origin=0 (not origin=1 since we already added 1 above)
-    - These are the correct sky coordinates in the FITS WCS definition. If you wish, you could overwrite the catalogs with the modified pixel and sky coordinates to make them '1-based'.
 - When the subdivision approach is used, `XWIN_IMAGE`, `YWIN_IMAGE`, `X_IMAGE`, and `Y_IMAGE` are all overwritten by `X_IMAGE_DBL` and `Y_IMAGE_DBL`.
 
 ## License
