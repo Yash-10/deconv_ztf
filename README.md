@@ -28,7 +28,7 @@ the SGP algorithm with beta divergence (see [this paper](https://www.sciencedire
     - Step 1: Add 1 to the x- and y-pixel coordinates (to make it to the (1, 1) convention)
     - Step 2: Convert those to sky coordinates using, say, [`pix_to_skycoord`](https://docs.astropy.org/en/latest/api/astropy.wcs.utils.pixel_to_skycoord.html) - use origin=0 (not origin=1 since we already added 1 above)
     - These are the correct sky coordinates in the FITS WCS definition. If you wish, you could overwrite the catalogs with the modified pixel and sky coordinates to make them '1-based'.
-- `XWIN_IMAGE`, `YWIN_IMAGE`, `X_IMAGE`, and `Y_IMAGE` are all overwritten using `X_IMAGE_DBL` and `Y_IMAGE_DBL` when the subdivision approach is used.
+- When the subdivision approach is used, `XWIN_IMAGE`, `YWIN_IMAGE`, `X_IMAGE`, and `Y_IMAGE` are all overwritten by `X_IMAGE_DBL` and `Y_IMAGE_DBL`.
 
 ## License
 [MIT](https://github.com/Yash-10/deconv_ztf/blob/main/LICENSE)
