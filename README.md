@@ -12,16 +12,26 @@ Coming soon...
 
 ## Usage
 
+**Scripts**:
 - `run.py` contains the driver code.
 - `sgp.py` contains the SGP algorithm (see the function `sgp`). There is also a function named `sgp_betaDiv`. It is
 the SGP algorithm with beta divergence (see [this paper](https://www.sciencedirect.com/science/article/abs/pii/S2213133723000549)), but is not used in this work.
 - `Afunction.py` describes procedures for convolution with PSF.
 - `flux_conserve_proj.py` contains the implementation of the projection step in SGP.
 - `utils.py` contains some utility functions and `constants.py` defines some constants.
-- `richardson_lucy.py` contains the Richardson-Lucy algorithm implementation.
+- `richardson_lucy.py` contains the Richardson-Lucy (RL) algorithm implementation.
+
+**Notebooks**
 - `ZTF_Deconvolution_Run.ipynb` demonstrates an example to use the SGP algorithm for deconvolving ZTF images.
 - `ZTF_Deconvolution_Analysis.ipynb` illustrates the analysis of deconvolution performance (analysis of crossmatched catalogs, visualizations, etc.) and also code for generating plots in the paper.
-- The folder `sgp_reconstruction_results` contains SExtractor parameter and configuration files. This is also the folder where the outputs will be stored after deconvolution is run.
+
+**Folders**
+- `sgp_reconstruction_results` contains SExtractor parameter and configuration files. This is also the folder where the outputs will be stored after deconvolution is run.
+- `sgp_results` contains catalogs of observed and deconvolved images considered in this study, and also the crossmatched catalogs.
+- `rl_spatialreg` contains RL run log and source catalogs of observed, deconvolved, and crossmatched catalogs for a single field (with ID 626).
+- `deconv_validation` contains the analysis notebook for validating deconvolved sources with DESI sources.
+    - `deconv_validation/final_catalogs_for_plots` contains catalogs used for making plots for the paper. Each of these is created within the notebook called `deconv_validation/deconv_source_validation.ipynb`.
+    - `deconv_validation/forced_phot_lcs` contains ZTF forced photometry light curves, which are used in the above notebook.
 
 ## Caveats
 - When the subdivision approach is used, `XWIN_IMAGE`, `YWIN_IMAGE`, `X_IMAGE`, and `Y_IMAGE` are all overwritten by `X_IMAGE_DBL` and `Y_IMAGE_DBL`.
