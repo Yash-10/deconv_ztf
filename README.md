@@ -11,6 +11,8 @@ The arXiv link to the paper is here: TODO
 
 Ground-based astronomical observations will continue to produce resolution-limited images due to atmospheric seeing. Deconvolution reverses such effects and thus can benefit extracted science in multifaceted ways. We apply the Scaled Gradient Projection (SGP) algorithm for the single-band deconvolution of several observed images from the Zwicky Transient Facility and mainly discuss the performance on stellar sources. The method shows good photometric flux preservation, which deteriorates for fainter sources but significantly reduces flux uncertainties even for the faintest sources. Deconvolved sources have a well-defined Full-Width-at-Half-Maximum (FWHM) of roughly one pixel (one arcsecond for ZTF) regardless of the observed seeing. Detection after deconvolution results in catalogs with ≳99.6% completeness relative to detections in the observed images. A few observed sources that could not be detected in the deconvolved image are found near saturated sources, whereas for others, the deconvolved counterparts are detected when slightly different detection parameters are used. The deconvolution reveals new faint sources previously undetectable, which are confirmed by crossmatching with the deeper DESI Legacy DR10 and with Pan-STARRS1 through forced photometry. The method could identify examples of serendipitous potential deblends that exceeded SExtractor's deblending capabilities, with as extreme as ∆m ≈ 3 and separations as small as one arcsecond between the deblended components. Our survey-agnostic approach is better and eight times faster than Richardson-Lucy deconvolution and could be a reliable method for incorporation into survey pipelines.
 
+The paper also describes survey-specific tuning strategies to use the method on custom datasets.
+
 ## Code description
 
 **Scripts**:
@@ -42,6 +44,8 @@ If you use this code in your work, please cite our paper:
 
 TODO
 
+## Bugs or issues
+If you find something not working as expected or anything weird, we would like to know and improve it! Please feel free to open an issue in the issue tracker or <a href="mailto:yashgondhalekar567@gmail.com">send an email</a>.
 
 ## License
 [MIT](https://github.com/Yash-10/deconv_ztf/blob/main/LICENSE)
