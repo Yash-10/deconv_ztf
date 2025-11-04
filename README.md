@@ -1,13 +1,13 @@
 # Deconvolution for Large Astronomical Surveys using the Scaled Gradient Projection method
-> The code is tested majorly when `opt.use_sextractor` and `opt.use_subdiv` are used to run the code.
+> The code is tested mainly when `opt.use_sextractor` and `opt.use_subdiv` are used to run the code.
 
-Ground-based astronomical observations are degraded by several factors such as atmospheric seeing, instrumental aberrations, diffraction, and other sources of noise. Deconvolution can help reverse these effects and extract more science from astronomical images than we currently can. 
+Ground-based astronomical observations are degraded by several factors, such as atmospheric seeing, instrumental aberrations, diffraction, and other sources of noise. Deconvolution can help reverse these effects and extract more science from astronomical images than we currently can. 
 
 This repository contains code for image deconvolution using the Scaled Gradient Projection method (SGP) and has been designed for applications in astronomy. The code currently can perform single-image deconvolution with a known Point Spread Function.
 
 ## Abstract
 
-The arXiv link to the paper is here: TODO
+The arXiv link to the paper is here: [2511.00148](https://arxiv.org/abs/2511.00148)
 
 Ground-based astronomical observations will continue to produce resolution-limited images due to atmospheric seeing. Deconvolution reverses such effects and thus can benefit extracted science in multifaceted ways. We apply the Scaled Gradient Projection (SGP) algorithm for the single-band deconvolution of several observed images from the Zwicky Transient Facility and mainly discuss the performance on stellar sources. The method shows good photometric flux preservation, which deteriorates for fainter sources but significantly reduces flux uncertainties even for the faintest sources. Deconvolved sources have a well-defined Full-Width-at-Half-Maximum (FWHM) of roughly one pixel (one arcsecond for ZTF) regardless of the observed seeing. Detection after deconvolution results in catalogs with ≳99.6% completeness relative to detections in the observed images. A few observed sources that could not be detected in the deconvolved image are found near saturated sources, whereas for others, the deconvolved counterparts are detected when slightly different detection parameters are used. The deconvolution reveals new faint sources previously undetectable, which are confirmed by crossmatching with the deeper DESI Legacy DR10 and with Pan-STARRS1 through forced photometry. The method could identify examples of serendipitous potential deblends that exceeded SExtractor's deblending capabilities, with as extreme as ∆m ≈ 3 and separations as small as one arcsecond between the deblended components. Our survey-agnostic approach is better and eight times faster than Richardson-Lucy deconvolution and could be a reliable method for incorporation into survey pipelines.
 
@@ -29,7 +29,7 @@ the SGP algorithm with beta divergence (see [this paper](https://www.sciencedire
 - `ZTF_Deconvolution_Analysis.ipynb` illustrates the analysis of deconvolution performance (analysis of crossmatched catalogs, visualizations, etc.) and also code for generating plots in the paper.
 
 **Folders**
-- `sgp_reconstruction_results` contains SExtractor parameter and configuration files. This is also the folder where the outputs will be stored after deconvolution is run.
+- `sgp_reconstruction_results` contains SExtractor parameter and configuration files. This is also the folder where the outputs will be stored after the deconvolution is run.
 - `sgp_results` contains catalogs of observed and deconvolved images considered in this study, and also the crossmatched catalogs.
 - `rl_spatialreg` contains RL run log and source catalogs of observed, deconvolved, and crossmatched catalogs for a single field (with ID 626).
 - `deconv_validation` contains the analysis notebook for validating deconvolved sources with DESI sources.
