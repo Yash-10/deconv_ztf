@@ -3,11 +3,11 @@
 
 Ground-based astronomical observations are degraded by several factors, such as atmospheric seeing, instrumental aberrations, diffraction, and other sources of noise. Deconvolution can help reverse these effects and extract more science from astronomical images than we currently can. 
 
-This repository contains code for image deconvolution using the Scaled Gradient Projection method (SGP) and has been designed for applications in astronomy. The code currently can perform single-image deconvolution with a known Point Spread Function.
+This repository contains code for image deconvolution using the Scaled Gradient Projection (SGP) method and is designed for applications in astronomy. The code currently can perform single-image deconvolution with a known Point Spread Function.
 
 ## Abstract
 
-The arXiv link to the paper is here: [2511.00148](https://arxiv.org/abs/2511.00148)
+The paper has been published in PASP and can be found here: [10.1088/1538-3873/ae1386](https://iopscience.iop.org/article/10.1088/1538-3873/ae1386). The arXiv link to the paper is here: [2511.00148](https://arxiv.org/abs/2511.00148)
 
 Ground-based astronomical observations will continue to produce resolution-limited images due to atmospheric seeing. Deconvolution reverses such effects and thus can benefit extracted science in multifaceted ways. We apply the Scaled Gradient Projection (SGP) algorithm for the single-band deconvolution of several observed images from the Zwicky Transient Facility and mainly discuss the performance on stellar sources. The method shows good photometric flux preservation, which deteriorates for fainter sources but significantly reduces flux uncertainties even for the faintest sources. Deconvolved sources have a well-defined Full-Width-at-Half-Maximum (FWHM) of roughly one pixel (one arcsecond for ZTF) regardless of the observed seeing. Detection after deconvolution results in catalogs with ≳99.6% completeness relative to detections in the observed images. A few observed sources that could not be detected in the deconvolved image are found near saturated sources, whereas for others, the deconvolved counterparts are detected when slightly different detection parameters are used. The deconvolution reveals new faint sources previously undetectable, which are confirmed by crossmatching with the deeper DESI Legacy DR10 and with Pan-STARRS1 through forced photometry. The method could identify examples of serendipitous potential deblends that exceeded SExtractor's deblending capabilities, with as extreme as ∆m ≈ 3 and separations as small as one arcsecond between the deblended components. Our survey-agnostic approach is better and eight times faster than Richardson-Lucy deconvolution and could be a reliable method for incorporation into survey pipelines.
 
@@ -25,7 +25,7 @@ the SGP algorithm with beta divergence (see [this paper](https://www.sciencedire
 - `richardson_lucy.py` contains the Richardson-Lucy (RL) algorithm implementation.
 
 **Notebooks**
-- `ZTF_Deconvolution_Run.ipynb` demonstrates an example to use the SGP algorithm for deconvolving ZTF images.
+- `ZTF_Deconvolution_Run.ipynb` demonstrates an example of using the SGP algorithm for deconvolving ZTF images.
 - `ZTF_Deconvolution_Analysis.ipynb` illustrates the analysis of deconvolution performance (analysis of crossmatched catalogs, visualizations, etc.) and also code for generating plots in the paper.
 
 **Folders**
@@ -42,7 +42,22 @@ the SGP algorithm with beta divergence (see [this paper](https://www.sciencedire
 ## Citation
 If you use this code in your work, please cite our paper:
 
-TODO
+```
+@article{Gondhalekar_2025,
+doi = {10.1088/1538-3873/ae1386},
+url = {https://doi.org/10.1088/1538-3873/ae1386},
+year = {2025},
+month = {nov},
+publisher = {The Astronomical Society of the Pacific},
+volume = {137},
+number = {11},
+pages = {114502},
+author = {Gondhalekar, Yash and Feder, Richard M. and Graham, Matthew J. and Kembhavi, Ajit K. and Safonova, Margarita and Saha, Snehanshu and Mahabal, Ashish A.},
+title = {Deconvolution for Large Astronomical Surveys: A Study of the Scaled Gradient Projection Method on Zwicky Transient Facility Data},
+journal = {Publications of the Astronomical Society of the Pacific},
+abstract = {Ground-based astronomical observations will continue to produce resolution-limited images due to atmospheric seeing. Deconvolution reverses such effects and thus can benefit extracted science in multifaceted ways. We apply the Scaled Gradient Projection algorithm for the single-band deconvolution of several observed images from the Zwicky Transient Facility and mainly discuss the performance on stellar sources. The method shows good photometric flux preservation, which deteriorates for fainter sources but significantly reduces flux uncertainties even for the faintest sources. Deconvolved sources have a well-defined Full-Width-at-Half-Maximum of roughly one pixel (one arcsecond for ZTF) regardless of the observed seeing. Detection after deconvolution results in catalogs with ≳99.6% completeness relative to detections in the observed images. A few observed sources that could not be detected in the deconvolved image are found near saturated sources, whereas for others, the deconvolved counterparts are detected when slightly different detection parameters are used. The deconvolution reveals new faint sources previously undetectable, which are confirmed by crossmatching with the deeper DESI Legacy DR10 and with Pan-STARRS1 through forced photometry. The method could identify examples of serendipitous potential deblends that exceeded SExtractor’s deblending capabilities, with as extreme as Δm ≈ 3 and separations as small as one arcsecond between the deblended components. Our survey-agnostic approach is better and eight times faster than Richardson–Lucy deconvolution and could be a reliable method for incorporation into survey pipelines.}
+}
+```
 
 ## Bugs or issues
 If you find something not working as expected or anything weird, we would like to know and improve it! Please feel free to open an issue in the issue tracker or <a href="mailto:yashgondhalekar567@gmail.com">send an email</a>.
